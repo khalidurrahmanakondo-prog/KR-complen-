@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ছাত্র প্রোফাইল সার্চ বোর্ড</title>
+
+<!-- Firebase App & Firestore (Compat Version) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+body {
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+    -webkit-touch-callout: none; 
+}
+input, .copy-btn {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;-webkit-tap-highlight-color:transparent;}
+
+body{background:#f0f4f8;padding:20px 15px;display:flex;flex-direction:column;align-items:center;gap:15px;scroll-behavior:smooth;min-height:100vh;}
+
+.header-title{background:linear-gradient(135deg,#0a3622,#198754);color:white;padding:16px 20px;border-radius:14px;font-size:18px;font-weight:700;text-align:center;width:100%;max-width:430px;box-shadow:0 8px 15px rgba(25,135,84,.2);}
+
+.search-container{width:100%;max-width:430px;}
+.search-input{width:100%;padding:14px 20px;font-size:15px;border:2px solid #198754;border-radius:25px;outline:none;background:#fff;box-shadow:0 5px 15px rgba(0,0,0,.05);font-weight:500;}
+
+.sync-live-box {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    border: 2px dashed #198754;
+    color: #0a3622;
+    padding: 12px 15px;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 430px;
+    box-shadow: 0 6px 15px rgba(25,135,84,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.sync-header-status {
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    width: 100%;
+}
+.sync-preview-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #a3d9a5;
+    width: 100%;
+}
+.sync-preview-img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #198754;
+    flex-shrink: 0;
+}
+.sync-preview-emoji {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #f0f4f8;
+    border: 2px solid #198754;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+.sync-preview-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 100%;
+    overflow: hidden;
+}
+.sync-preview-line {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0a3622;
+    display: block;
+    width: 100%;
+}
+.sync-preview-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #198754;
+    width: 100%;
+    display: block;
+    word-break: break-word;
+}
+
+.suggest-list-container{width:100%;max-width:430px;display:none;flex-direction:column;gap:12px;margin-top:5px;background:#fff;padding:12px;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.05);border:1px dashed #cbd5e1;}
+.suggest-item{background:linear-gradient(135deg,#0a3622,#14532d);color:white;border-radius:50px;padding:12px 20px;display:flex;align-items:center;gap:18px;cursor:pointer;box-shadow:0 6px 12px rgba(10,54,34,.18);transition:.2s;width:100%;}
+.suggest-item:active{transform:scale(.97);}
+.suggest-img{width:65px;height:65px;border-radius:50%;object-fit:cover;border:2.5px solid #ffb300;background:#fff;flex-shrink:0;}
+.suggest-emoji-box{width:65px;height:65px;border-radius:50%;border:2.5px solid #ffb300;background:#fff;display:flex;align-items:center;justify-content:center;font-size:32px;flex-shrink:0;}
+.suggest-info{display:flex;flex-direction:column;gap:3px;justify-content:center;padding-right:10px;}
+.suggest-serial{font-size:12px;color:#ffd700;font-weight:600;}
+.suggest-name{font-size:16px;font-weight:700;color:#fff;line-height:1.3;}
+.highlight-match{color:#34d399;font-weight:800;}
+.suggest-dept{font-size:12px;color:#cbd5e1;font-weight:500;}
+
+.divider-text{width:100%;max-width:430px;font-size:14px;font-weight:700;color:#475569;margin-top:5px;border-bottom:2px solid #cbd5e1;padding-bottom:5px;}
+.profiles-wrapper-container{width:100%;max-width:430px;display:flex;flex-direction:column;gap:25px;}
+
+.profile-area-wrapper{
+    position: relative;
+    width: 100%;
+    padding: 7px;
+    border-radius: 26px;
+    background: #e2e8f0;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    scroll-margin-top: 15px;
+    transform: translateZ(0);
+    contain: layout paint style;
+}
+.profile-area-wrapper.highlight-focus{transform:scale(1.04);box-shadow:0 0 30px rgba(25,135,84,.5);transition:transform 0.3s ease;}
+
+.profile-card{background:#fff;width:100%;border-radius:20px;overflow:hidden;position:relative;z-index:1;padding-bottom:12px;}
+.profile-top{background:linear-gradient(135deg,#0a3622,#198754);padding:35px 20px 25px;text-align:center;position:relative;}
+.serial-badge{position:relative;z-index:1;background:rgba(255,215,0,.2);color:#ffd700;border:1px solid #ffd700;display:inline-block;padding:3px 12px;border-radius:15px;font-size:11px;font-weight:700;margin-bottom:12px;}
+
+.profile-img{
+    width: 100px !important;
+    height: 100px !important;
+    min-width: 100px !important;
+    min-height: 100px !important;
+    max-width: 100px !important;
+    max-height: 100px !important;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    position: relative;
+    z-index: 1;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0,0,0,.2);
+    display: block;
+    margin: 0 auto;
+    background: #e2e8f0;
+    flex-shrink: 0;
+}
+.profile-emoji-box{
+    width: 100px !important;
+    height: 100px !important;
+    min-width: 100px !important;
+    min-height: 100px !important;
+    max-width: 100px !important;
+    max-height: 100px !important;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 5px 15px rgba(0,0,0,.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    background: #fff;
+    font-size: 45px;
+    flex-shrink: 0;
+}
+
+.profile-name{position:relative;z-index:1;color:#fff;font-size:19px;font-weight:700;margin-top:10px;}
+.profile-tag{position:relative;z-index:1;background:#20c997;color:#fff;display:inline-block;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:600;margin-top:6px;}
+.info-container{background:#f8fafc;border:1px solid #edf2f7;border-radius:12px;padding:5px 15px;margin:20px 20px 15px 20px;}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px dashed #e2e8f0;gap:10px;}
+.info-row:last-child{border-bottom:none;}
+.info-label{font-size:13px;color:#64748b;font-weight:600;flex-shrink:0;}
+.info-data{font-size:13px;color:#1e293b;font-weight:700;text-align:right;display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;word-break:break-word;}
+.mobile-icon-wrapper{display:flex;align-items:center;gap:6px;margin-right:4px;min-height:22px;}
+.highlight-data{color:#dc3545;font-weight:800;}
+.copy-btn{background:#e6f4ea;border:1px solid #198754;color:#198754;width:24px;height:24px;border-radius:6px;cursor:pointer;font-size:11px;display:inline-flex;align-items:center;justify-content:center;transition:.2s;}
+.copy-btn:active{transform:scale(.85);background:#198754;color:#fff;}
+
+.social-section-box{padding:0 20px;margin-bottom:8px;}
+.social-title{font-size:14px;font-weight:700;color:#334155;margin-bottom:12px;border-bottom:2px dashed #cbd5e1;padding-bottom:5px;}
+.social-column{display:flex;flex-direction:column;gap:10px;width:100%;align-items:flex-start;}
+.social-btn{display:flex;align-items:center;justify-content:flex-start;gap:12px;width:55%;min-width:180px;height:40px;border-radius:20px;text-decoration:none;color:#fff;font-size:13px;font-weight:600;padding-left:18px;transition:.2s;cursor:pointer;box-shadow:0 4px 6px rgba(0,0,0,.08); border:none;}
+.social-btn i{font-size:16px;width:22px;text-align:center;}
+.social-btn svg{width:18px;height:18px;}
+.social-btn:active{transform:scale(.96);}
+.no-social-text{font-size:13px;color:#ef4444;font-weight:600;background:#fef2f2;border:1px dashed #fca5a5;padding:12px;border-radius:8px;text-align:center;width:100%;}
+.wa{background:#25D366;} .imo{background:#1286eb;}
+.toast{position:fixed;top:-50px;left:50%;transform:translateX(-50%);background:rgba(25,135,84,.95);color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:500;box-shadow:0 8px 20px rgba(0,0,0,.15);z-index:100000;transition:.4s cubic-bezier(.68,-0.55,.265,1.55);pointer-events:none;}
+.toast.show{top:20px;}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toastMsg">কপি হয়েছে! ✅</div>
+
+<div class="header-title">🎓 ছাত্র প্রোফাইল সার্চ বোর্ড</div>
+<div class="search-container">
+    <input type="text" id="searchInput" class="search-input" placeholder="🔍 মুতাওয়াসসিতাহ ছাত্রদের নাম লিখুন..." oninput="filterProfiles()">
+</div>
+
+<div id="syncStatusContainer">
+    <div class="sync-live-box">
+        <div class="sync-header-status">⚡ সিংক শুরু হচ্ছে...</div>
+        <div class="sync-preview-card">
+            <div class="sync-preview-emoji">👳‍♂️</div>
+            <div class="sync-preview-info">
+                <span class="sync-preview-line">ক্রমিক নং: ১</span>
+                <span class="sync-preview-line">আইডি: --</span>
+                <span class="sync-preview-name">ডেটা লোড হচ্ছে...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="suggestList" class="suggest-list-container"></div>
+<div id="dividerText" class="divider-text">📋 সকল ছাত্রের বিস্তারিত প্রোফাইল বোর্ড</div>
+
+<div id="profilesContainer" class="profiles-wrapper-container"></div>
+
+<script>
+const firebaseConfig = {
+    apiKey: "AIzaSyBV1PQDsT5vRxjT_nm72uttgkZYwK0tjfE",
+    authDomain: "abnaye-darul-uloom.firebaseapp.com",
+    projectId: "abnaye-darul-uloom",
+    storageBucket: "abnaye-darul-uloom.firebasestorage.app",
+    messagingSenderId: "973857113265",
+    appId: "1:973857113265:web:d04e29b26b442f4d0e0e90"
+};
+
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
+const db = firebase.firestore();
+
+window.activeStudents = [];
+let unsubscribeSnapshot = null;
+
+function loadFromCache() {
+    try {
+        const cached = sessionStorage.getItem('studentProfilesCache');
+        if (cached) {
+            const parsed = JSON.parse(cached);
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
+    } catch (e) { console.warn("Cache load failed:", e); }
+    return null;
+}
+
+function saveToCache(data) {
+    try { sessionStorage.setItem('studentProfilesCache', JSON.stringify(data)); } catch (e) { console.warn("Cache save failed:", e); }
+}
+
+async function playProgressiveSync(students) {
+    const syncStatusContainer = document.getElementById('syncStatusContainer');
+    const profilesContainer = document.getElementById('profilesContainer');
+    profilesContainer.innerHTML = "";
+
+    for (let i = 0; i < students.length; i++) {
+        let st = students[i];
+        st.originalIndex = i + 1;
+        let serialNo = convertToBanglaNumber(i + 1);
+        let studentIdName = st.id || "নেই";
+        let studentMediaHtml = st.image ? `<img src="${st.image}" class="sync-preview-img">` : `<div class="sync-preview-emoji">👳‍♂️</div>`;
+
+        syncStatusContainer.innerHTML = `
+            <div class="sync-live-box">
+                <div class="sync-header-status">⚡ ফায়ারবেস সিংক হচ্ছে (${i + 1}/${students.length})...</div>
+                <div class="sync-preview-card">
+                    ${studentMediaHtml}
+                    <div class="sync-preview-info">
+                        <span class="sync-preview-line">ক্রমিক নং: ${serialNo}</span>
+                        <span class="sync-preview-line">আইডি: ${studentIdName}</span>
+                        <span class="sync-preview-name">${st.name}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        profilesContainer.innerHTML += generateProfileCardHtml(st, i + 1);
+        await new Promise(resolve => setTimeout(resolve, 300));
+    }
+
+    syncStatusContainer.innerHTML = `
+        <div class="sync-live-box" style="background:#e8f5e9; border-color:#198754; align-items:center;">
+            <div class="sync-header-status" style="color:#0a3622; font-size:13px;">✅ ফায়ারবেস সিংক সফল হয়েছে! (${students.length} জন)</div>
+        </div>
+    `;
+
+    setTimeout(() => {
+        let box = syncStatusContainer.querySelector('.sync-live-box');
+        if (box) {
+            box.style.opacity = '0';
+            setTimeout(() => { syncStatusContainer.innerHTML = ""; }, 300);
+        } else { syncStatusContainer.innerHTML = ""; }
+    }, 1000);
+}
+
+async function initAndSyncModel() {
+    const collectionRef = db.collection("students");
+    const syncStatusContainer = document.getElementById('syncStatusContainer');
+    const profilesContainer = document.getElementById('profilesContainer');
+
+    window.activeStudents = [];
+    profilesContainer.innerHTML = "";
+
+    try {
+        let allowedList = [];
+        let snapshot = await collectionRef.get();
+
+        if (!snapshot.empty) {
+            snapshot.docs.forEach(doc => {
+                let remoteData = doc.data();
+                if (!remoteData.id) remoteData.id = doc.id;
+
+                // শর্ত: ছাত্রের সক্রিয়তা অনুমতি এবং প্রোফাইল প্রদর্শনের অনুমতি দুটিতেই true থাকা আবশ্যক (অন্যথায় তথ্য দেখাবে না)
+                let profilePermission = remoteData["প্রোফাইল প্রদর্শনের অনুমতি"] === true || remoteData["প্রোফাইল প্রদর্শনের অনুমতি"] === "true" || remoteData["প্রোফাইল প্রদর্শনের অনুমতি"] === 1 || remoteData["প্রোফাইল প্রদর্শনের অনুমতি"] === undefined;
+                let activePermission = remoteData["ছাত্রের সক্রিয়তা অনুমতি"] === true || remoteData["ছাত্রের সক্রিয়তা অনুমতি"] === "true" || remoteData["ছাত্রের সক্রিয়তা অনুমতি"] === 1 || remoteData["ছাত্রের সক্রিয়তা অনুমতি"] === undefined;
+
+                if (profilePermission && activePermission) {
+                    if (!remoteData.socials) remoteData.socials = {};
+                    if (remoteData.mobile) {
+                        let rawMobile = remoteData.mobile.toString();
+                        let number = rawMobile.replace(/[^\d]/g, "");
+                        if (number.startsWith("0")) number = "88" + number;
+                        if (rawMobile.toLowerCase().includes("wa")) remoteData.socials.wa = `https://wa.me/${number}`;
+                        if (rawMobile.toLowerCase().includes("imo")) remoteData.socials.imo = `imo://chat?phone=${number}`;
+                    }
+                    allowedList.push(remoteData);
+                }
+            });
+        }
+
+        saveToCache(allowedList);
+        window.activeStudents = allowedList;
+
+        await playProgressiveSync(allowedList);
+        startRealtimeListener(collectionRef);
+
+    } catch (err) {
+        console.error("Firebase sync error:", err);
+        syncStatusContainer.innerHTML = `
+            <div class="sync-live-box">
+                <div class="sync-header-status">❌ সংযোগ ব্যর্থ হয়েছে</div>
+            </div>
+        `;
+    }
+}
+
+function startRealtimeListener(collectionRef) {
+    if (unsubscribeSnapshot) unsubscribeSnapshot();
+
+    let isFirstSnapshot = true;
+
+    unsubscribeSnapshot = collectionRef.onSnapshot((snapshot) => {
+        if (isFirstSnapshot) {
+            isFirstSnapshot = false;
+            return;
+        }
+
+        let allowedList = [];
+
+        snapshot.docs.forEach(doc => {
+            let remoteData = doc.data();
+            let profilePermission = remoteData["প্রোফাইল প্রদর্শনের অনুমতি"] === true || remoteData["প্রোফাইল প্রদর্শনের অনুমতি"] === "true" || remoteData["প্রোফাইল প্রদর্শনের অনুমতি"] === 1 || remoteData["প্রোফাইল প্রদর্শনের অনুমতি"] === undefined;
+            let activePermission = remoteData["ছাত্রের সক্রিয়তা অনুমতি"] === true || remoteData["ছাত্রের সক্রিয়তা অনুমতি"] === "true" || remoteData["ছাত্রের সক্রিয়তা অনুমতি"] === 1 || remoteData["ছাত্রের সক্রিয়তা অনুমতি"] === undefined;
+
+            if (profilePermission && activePermission) {
+                if (!remoteData.socials) remoteData.socials = {};
+                if (remoteData.mobile) {
+                    let rawMobile = remoteData.mobile.toString();
+                    let number = rawMobile.replace(/[^\d]/g, "");
+                    if (number.startsWith("0")) number = "88" + number;
+                    if (rawMobile.toLowerCase().includes("wa")) remoteData.socials.wa = `https://wa.me/${number}`;
+                    if (rawMobile.toLowerCase().includes("imo")) remoteData.socials.imo = `imo://chat?phone=${number}`;
+                }
+                allowedList.push(remoteData);
+            }
+        });
+
+        window.activeStudents = allowedList;
+        saveToCache(allowedList);
+
+        if (!snapshot.metadata.fromCache) {
+            const profilesContainer = document.getElementById('profilesContainer');
+            profilesContainer.innerHTML = "";
+            allowedList.forEach((st, i) => {
+                st.originalIndex = i + 1;
+                profilesContainer.innerHTML += generateProfileCardHtml(st, i + 1);
+            });
+        }
+    }, (error) => { console.error("Realtime listener error:", error); });
+}
+
+function generateProfileCardHtml(student, index) {
+    let serialNo = convertToBanglaNumber(index);
+    let bloodRow = student.blood ? `<div class="info-row"><span class="info-label">রক্তের গ্রুপ</span><span class="info-data highlight-data">${student.blood}</span></div>` : '';
+    let studentMediaHtml = renderImageHtml(student.image, false);
+
+    let socialBtns = [];
+    socialBtns.push(createSocialButton(student.socials?.wa, 'wa', '<i class="fab fa-whatsapp"></i>', 'WhatsApp'));
+
+    if(isValidSocialLink(student.socials?.imo)){
+        const imoIcon = `<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="white"/><circle cx="50" cy="50" r="40" fill="#1286eb"/><text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" font-family="'Poppins',sans-serif" font-weight="800" font-size="28" fill="white">imo</text></svg>`;
+        socialBtns.push(`<button class="social-btn imo" onclick="handleBtnClick(this, '${getClickableUrl(student.socials.imo)}')">${imoIcon} IMO</button>`);
+    }
+
+    const activeBtns = socialBtns.filter(btn => btn !== '');
+    let socialSection = activeBtns.length > 0 ? `<div class="social-section-box"><div class="social-title">সোশ্যাল মিডিয়া সংযোগ</div><div class="social-column">${activeBtns.join('')}</div></div>` : `<div class="social-section-box"><div class="social-title">সোশ্যাল মিডিয়া সংযোগ</div><div class="no-social-text">⚠️ উক্ত ছাত্রের হোয়াটসঅ্যাপ বা আইএমও লিংক নেই</div></div>`;
+
+    let rawMobile = student.mobile || "";
+    let cleanMobileNumber = rawMobile.replace(/[^\d]/g,"");
+    let lowerMobile = rawMobile.toLowerCase();
+    let inlineMobileIconsHtml = "";
+
+    if(lowerMobile.includes("wa")){ inlineMobileIconsHtml += `<i class="fab fa-whatsapp" style="color:#25D366; font-size:18px; margin-right:5px;"></i>`; }
+    if(lowerMobile.includes("imo")){ inlineMobileIconsHtml += `<svg viewBox="0 0 100 100" style="width:18px; height:18px; margin-right:5px;"><circle cx="50" cy="50" r="48" fill="white"/><circle cx="50" cy="50" r="40" fill="#1286eb"/><text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" font-family="'Poppins',sans-serif" font-weight="800" font-size="28" fill="white">imo</text></svg>`; }
+
+    let inlineMobileIcons = inlineMobileIconsHtml ? `<div class="mobile-icon-wrapper">${inlineMobileIconsHtml}</div>` : `<div class="mobile-icon-wrapper"></div>`;
+
+    return `<div class="profile-area-wrapper" id="${student.id}"><div class="profile-card"><div class="profile-top"><div class="serial-badge">ক্রমিক নং: ${serialNo}</div>${studentMediaHtml}<h2 class="profile-name">${student.name || ''}</h2><div class="profile-tag">${student.title || 'মুতাওয়াসসিতাহ'}</div></div><div class="info-container"><div class="info-row"><span class="info-label">পিতার নাম</span><span class="info-data">${student.father || ''}</span></div><div class="info-row"><span class="info-label">গ্রাম</span><span class="info-data">${student.village || ''}</span></div><div class="info-row"><span class="info-label">পোস্ট অফিস</span><span class="info-data">${student.post || ''}</span></div><div class="info-row"><span class="info-label">থানা</span><span class="info-data">${student.thana || ''}</span></div><div class="info-row"><span class="info-label">জেলা</span><span class="info-data">${student.district || ''}</span></div><div class="info-row"><span class="info-label">জিপ কোড</span><span class="info-data">${student.zip || ''}</span></div><div class="info-row"><span class="info-label">জন্ম তারিখ</span><span class="info-data">${student.dob || ''}</span></div>${bloodRow}<div class="info-row"><span class="info-label">মোবাইল</span><span class="info-data">${inlineMobileIcons}${cleanMobileNumber}<button class="copy-btn" onclick="copyNumber('${cleanMobileNumber}')">📋</button></span></div></div>${socialSection}</div></div>`;
+}
+
+function handleBtnClick(el, url) {
+    const originalContent = el.innerHTML;
+    el.innerHTML = "অপেক্ষা করুন...";
+    el.disabled = true;
+    window.open(url, '_blank');
+    setTimeout(() => {
+        el.innerHTML = originalContent;
+        el.disabled = false;
+    }, 3000);
+}
+
+function createSocialButton(url, className, iconHtml, label) {
+    if (!isValidSocialLink(url)) return '';
+    let validUrl = getClickableUrl(url);
+    return `<button class="social-btn ${className}" onclick="handleBtnClick(this, '${validUrl}')">${iconHtml} ${label}</button>`;
+}
+function renderImageHtml(imgLink, isSuggest = false) {
+    let imgClass = isSuggest ? "suggest-img" : "profile-img";
+
+    if (imgLink && imgLink.trim() !== "") {
+        return `<img src="${imgLink}" class="${imgClass}" onerror="this.onerror=null; this.src='dfu.png';">`;
+    } else {
+        return `<img src="Delf_student.png" class="${imgClass}">`;
+    }
+}
+
+function scrollToStudent(elementId){
+    document.getElementById('searchInput').value = "";
+    document.getElementById('suggestList').style.display = "none";
+    document.getElementById('profilesContainer').style.display = "flex";
+    document.getElementById('dividerText').style.display = "block";
+    const element = document.getElementById(elementId);
+    if(element){
+        element.scrollIntoView({behavior:'smooth', block:'start'});
+        element.classList.add('highlight-focus');
+        setTimeout(() => element.classList.remove('highlight-focus'), 2000);
+    }
+}
+
+function highlightText(text, query){
+    if(!query) return text;
+    const regex = new RegExp(`(${query})`, 'gi');
+    return text.replace(regex, `<span class="highlight-match">$1</span>`);
+}
+
+function renderSuggestList(dataList, query, isError = false){
+    const suggestContainer = document.getElementById('suggestList');
+    if(isError){
+        suggestContainer.style.display = "flex";
+        suggestContainer.innerHTML = `<div style="text-align:center; padding:10px; color:#dc3545; font-weight:600;">❌ সার্চ অনুযায়ী কোনো ছাত্রের নাম পাওয়া যায়নি !</div>`;
+        return;
+    }
+    if(dataList.length === 0){
+        suggestContainer.style.display = "none";
+        return;
+    }
+    suggestContainer.style.display = "flex";
+    let html = '';
+    dataList.forEach((student) => {
+        let serialNo = convertToBanglaNumber(student.originalIndex);
+        let highlightedName = highlightText(student.name, query);
+        let studentMediaHtml = renderImageHtml(student.image, true);
+        
+        html += `<div class="suggest-item" onclick="scrollToStudent('${student.id}')">${studentMediaHtml}<div class="suggest-info"><span class="suggest-serial">ক্রমিক নং: ${serialNo}</span><span class="suggest-name">${highlightedName}</span><span class="suggest-dept">${student.title || 'মুতাওয়াসসিতাহ'}</span></div></div>`;
+    });
+    suggestContainer.innerHTML = html;
+}
+
+function isValidSocialLink(url){
+    if(!url || typeof url !== 'string') return false;
+    let trimmed = url.trim().toLowerCase();
+    return !(trimmed === "" || trimmed === "#" || trimmed.includes("wrong_link"));
+}
+
+function getClickableUrl(url){
+    let finalUrl = url.trim();
+    if(!finalUrl.startsWith('http://') && !finalUrl.startsWith('https://')){
+        if(finalUrl.includes('.')) return 'https://' + finalUrl;
+    }
+    return finalUrl;
+}
+
+function filterProfiles(){
+    const query = document.getElementById('searchInput').value.trim().toLowerCase();
+    const suggestContainer = document.getElementById('suggestList');
+    const profilesContainer = document.getElementById('profilesContainer');
+    const dividerText = document.getElementById('dividerText');
+
+    let dataSource = window.activeStudents || [];
+
+    if(query === ""){
+        renderSuggestList([], "", false);
+        profilesContainer.style.display = "flex";
+        dividerText.style.display = "block";
+        return;
+    }
+
+    profilesContainer.style.display = "none";
+    dividerText.style.display = "none";
+
+    const filtered = dataSource.filter(student => (student.name || "").toLowerCase().includes(query));
+
+    if(filtered.length > 0){
+        renderSuggestList(filtered, query, false);
+    } else {
+        renderSuggestList([], "", true);
+    }
+}
+
+function convertToBanglaNumber(numberStr){
+    const banglaDigits = {'0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯'};
+    return numberStr.toString().replace(/[0-9]/g, w => banglaDigits[w]);
+}
+
+function copyNumber(text){
+    if(navigator.clipboard && window.isSecureContext){
+        navigator.clipboard.writeText(text).then(() => showToast());
+    } else {
+        let textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast();
+        } catch(err) { console.error(err); }
+        document.body.removeChild(textArea);
+    }
+}
+
+function showToast(msg){
+    const toast = document.getElementById("toastMsg");
+    toast.innerText = msg || "কপি হয়েছে! ✅";
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 2500);
+}
+
+window.onload = () => {
+    initAndSyncModel();
+};
+</script>
+</body>
+</html>
