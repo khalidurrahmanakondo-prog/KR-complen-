@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>মাদ্রাসার ওস্তাদদের ফুল স্ক্রিন তালিকা</title>
+
+    <style>
+        :root {
+            --primary-color: #0A4D34;
+            --gold-color: #D4AF37;
+            --gold-light: #FAF5E6;
+            --text-dark: #2C3E50;
+            --bg-light: #F4F7F5;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            width: 100%;
+        }
+
+        .full-screen-container {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 30px 20px;
+            background: #ffffff;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* ==================================================
+           USER PROFILE
+           ================================================== */
+
+        .shared-user-profile {
+            width: fit-content;
+            max-width: calc(100% - 40px);
+            margin: 0 auto 22px auto;
+            padding: 8px 18px 8px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: #ffffff;
+            border: 2px solid var(--gold-color);
+            border-radius: 60px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            box-sizing: border-box;
+        }
+
+        .shared-user-photo {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--gold-light);
+            border: 2px solid var(--primary-color);
+            display: block;
+        }
+
+        .shared-user-name {
+            color: var(--primary-color);
+            font-size: 18px;
+            font-weight: 800;
+            line-height: 1.35;
+            text-align: left;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+
+        /* ==================================================
+           মাদ্রাসার হেডার
+           ================================================== */
+
+        .madrasah-header {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--gold-light);
+            border: 2px dashed var(--gold-color);
+            border-radius: 15px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .madrasah-name {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin: 0 0 8px 0;
+        }
+
+        .madrasah-address {
+            font-size: 16px;
+            color: #555;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* ==================================================
+           সূচিপত্র
+           ================================================== */
+
+        .index-box {
+            background: linear-gradient(135deg, #ffffff 0%, var(--gold-light) 100%);
+            border: 2px solid var(--gold-color);
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin: 25px auto 45px auto;
+            max-width: 900px;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.15);
+            box-sizing: border-box;
+        }
+
+        .index-title {
+            font-size: 19px;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 18px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .index-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+        }
+
+        .index-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 18px;
+            background-color: #ffffff;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            border-radius: 10px;
+            border: 1.5px solid var(--primary-color);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .index-btn:hover {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(10, 77, 52, 0.2);
+        }
+
+        .jamat-section {
+            margin: 0 auto 60px auto;
+            max-width: 95%;
+            position: relative;
+            border-radius: 20px;
+            padding: 4px;
+            background: var(--primary-color);
+            box-sizing: border-box;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            scroll-margin-top: 35px;
+        }
+
+        .jamat-inner {
+            background: #fff;
+            border-radius: 17px;
+            padding: 50px 30px 30px 30px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .jamat-legend {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 22px;
+            font-weight: bold;
+            color: #fff;
+            background-color: var(--primary-color);
+            padding: 8px 35px;
+            border-radius: 30px;
+            border: 2px solid var(--gold-color);
+            z-index: 5;
+            white-space: nowrap;
+        }
+
+        @property --angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+
+        .jamat-section:target {
+            background: conic-gradient(
+                from var(--angle),
+                var(--gold-color),
+                #fff,
+                var(--gold-color),
+                var(--primary-color),
+                var(--gold-color)
+            );
+
+            animation:
+                rotateBorder 1.5s linear infinite,
+                stopLoading 3.5s forwards;
+        }
+
+        .jamat-section:target .jamat-inner {
+            background-color: var(--gold-light);
+            animation: resetBg 3.5s forwards;
+        }
+
+        @keyframes rotateBorder {
+            to {
+                --angle: 360deg;
+            }
+        }
+
+        @keyframes stopLoading {
+            0% {
+                box-shadow: 0 0 35px rgba(212, 175, 55, 0.6);
+            }
+
+            90% {
+                background: conic-gradient(
+                    from var(--angle),
+                    var(--gold-color),
+                    #fff,
+                    var(--gold-color),
+                    var(--primary-color),
+                    var(--gold-color)
+                );
+                box-shadow: 0 0 35px rgba(212, 175, 55, 0.6);
+            }
+
+            100% {
+                background: var(--primary-color);
+                box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            }
+        }
+
+        @keyframes resetBg {
+            0% {
+                background-color: var(--gold-light);
+            }
+
+            90% {
+                background-color: var(--gold-light);
+            }
+
+            100% {
+                background-color: #fff;
+            }
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .teacher-profile {
+            background: #ffffff;
+            border: 1px solid var(--gold-color);
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            box-sizing: border-box;
+        }
+
+        .teacher-info {
+            margin-bottom: 20px;
+        }
+
+        .main-name {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin: 0 0 10px 0;
+        }
+
+        .upadhi-title {
+            font-size: 14px;
+            color: #E67E22;
+            font-weight: bold;
+            font-style: italic;
+            background: #FEF5ED;
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-top: 8px;
+            line-height: 1.6;
+            word-break: break-word;
+        }
+
+        .action-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .phone-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: linear-gradient(135deg, var(--primary-color), #166D4E);
+            color: white;
+            text-decoration: none;
+            padding: 11px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            border: 1px solid var(--gold-color);
+            flex: 1;
+            box-sizing: border-box;
+            box-shadow: 0 4px 10px rgba(11, 70, 50, 0.2);
+            font-size: 14px;
+        }
+
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            background: #FAF5E6;
+            color: var(--primary-color);
+            border: 1px solid var(--gold-color);
+            padding: 11px 12px;
+            border-radius: 50px;
+            font-weight: bold;
+            flex: 0 0 auto;
+            cursor: pointer;
+            box-sizing: border-box;
+            font-size: 13px;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            background: var(--gold-color);
+            color: #fff;
+        }
+
+        #toast {
+            visibility: hidden;
+            min-width: 200px;
+            background-color: #0A4D34;
+            color: #fff;
+            text-align: center;
+            border-radius: 30px;
+            padding: 12px 20px;
+            position: fixed;
+            z-index: 2000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-size: 14px;
+            border: 1px solid var(--gold-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.3s, fadeout 0.3s 1.8s forwards;
+        }
+
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .full-screen-container {
+                padding: 20px 10px 30px 10px;
+            }
+            .shared-user-profile {
+                max-width: calc(100% - 10px);
+                margin-top: 0px;
+                margin-bottom: 20px;
+                padding: 7px 14px 7px 7px;
+                gap: 9px;
+            }
+            .shared-user-photo {
+                width: 42px;
+                height: 42px;
+                min-width: 42px;
+            }
+            .shared-user-name {
+                font-size: 16px;
+            }
+            .madrasah-header {
+                margin-top: 5px;
+                padding: 17px 10px;
+            }
+            .madrasah-name {
+                font-size: 22px;
+            }
+            .madrasah-address {
+                font-size: 14px;
+            }
+            .index-box {
+                padding: 18px 12px;
+                margin: 20px 10px;
+            }
+            .index-buttons {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .index-btn {
+                width: 100%;
+                text-align: center;
+                padding: 11px 15px;
+            }
+            .jamat-section {
+                max-width: 100%;
+                margin-bottom: 50px;
+                scroll-margin-top: 25px;
+            }
+            .jamat-inner {
+                padding: 45px 12px 20px;
+            }
+            .jamat-legend {
+                font-size: 16px;
+                padding: 7px 18px;
+            }
+            .cards-container {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .teacher-profile {
+                padding: 20px 13px;
+            }
+            .main-name {
+                font-size: 19px;
+            }
+            .upadhi-title {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="full-screen-container">
+
+    <!-- ইউজারের ছবি ও নাম দেখানোর ট্যাগ -->
+    <div class="shared-user-profile">
+        <img id="sharedUserPhoto" class="shared-user-photo" src="Delf_student.png" alt="ইউজারের ছবি">
+        <div id="sharedUserName" class="shared-user-name">দারুল উলুম ধনবাড়ী</div>
+    </div>
+
+    <!-- মাদ্রাসার নাম ও ঠিকানা সেকশন -->
+    <div class="madrasah-header">
+        <h1 class="madrasah-name">🕌 দারুল উলুম ধনবাড়ী</h1>
+        <p class="madrasah-address">📍 পাইটকা, ধনবাড়ী, টাঙ্গাইল</p>
+    </div>
+
+    <!-- সূচিপত্র ডিজাইন -->
+    <div class="index-box">
+        <div class="index-title">📖 জামাত ভিত্তিক সূচিপত্র (ক্লিক করুন)</div>
+        <div class="index-buttons">
+            <a href="#kitab-area" class="index-btn">📚 কিতাব বিভাগের উস্তাদগণ</a>
+            <a href="#hifz-area" class="index-btn">📖 হিফজ বিভাগের উস্তাদগণ</a>
+            <a href="#baburchi-area" class="index-btn">🍲 রান্নার উস্তাদগণ (বাবুর্চি)</a>
+            <a href="#course-area" class="index-btn">✍️ কোর্সের ওস্তাদ</a>
+            <a href="#math-area" class="index-btn">🧮 গণিত বিশেষজ্ঞ</a>
+        </div>
+    </div>
+
+    <!-- কিতাব বিভাগ -->
+    <div class="jamat-section" id="kitab-area">
+        <div class="jamat-legend">কিতাব বিভাগের উস্তাদবৃন্দ</div>
+        <div class="jamat-inner">
+            <div class="cards-container">
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাওলানা নাজমুল হাসান</h2>
+                        <span class="upadhi-title">👑 বাবা হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01710-737846" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01710-737846')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাওলানা যুবায়ের আহমদ</h2>
+                        <span class="upadhi-title">👑 নেএকোনার হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01778-603747" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01778-603747')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাওলানা আব্দুল্লাহ আল মামুন</h2>
+                        <span class="upadhi-title">👑 গাজীপুরী হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01993820301" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01993820301')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাওলানা মুযযাম্মিল হক</h2>
+                        <span class="upadhi-title">👑 ফুলবাড়িয়ার হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01628766761" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01628766761')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাওলানা তাওহীদ আলতাফ</h2>
+                        <span class="upadhi-title">👑 হালুয়াঘাটী হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01687684027" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01687684027')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাওলানা রিয়াজুদ্দিন মাহদী</h2>
+                        <span class="upadhi-title">👑 গফরগাঁওয়ের হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01710234599" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01710234599')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাওলানা তরিকুল ইসলাম</h2>
+                        <span class="upadhi-title">👑 ফলদার হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01707607860" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01707607860')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাওলানা সাইদুর রহমান</h2>
+                        <span class="upadhi-title">👑 রশিদপুরী হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01770770067" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01770770067')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাস্টার মতিউর রহমান</h2>
+                        <span class="upadhi-title">👑 ধনবাড়ির হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01913496870" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01913496870')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাস্টার হাসিবুল হাসান শান্ত</h2>
+                        <span class="upadhi-title">👑 বকলবাড়ী হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01687481155" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01687481155')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাওলানা আবু সুফিয়ান</h2>
+                        <span class="upadhi-title">👑 ঈশ্বরগঞ্জী হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01618121408" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01618121408')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাওলানা আল আমিন</h2>
+                        <span class="upadhi-title">👑 বানরগাছী হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01617872252" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01617872252')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাওলানা এনামুল হাসান</h2>
+                        <span class="upadhi-title">👑 ভালুকজানের হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01610337073" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01610337073')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাওলানা আল আমিন</h2>
+                        <span class="upadhi-title">👑 চাটমোহরের হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01710812825" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01710812825')">📋 কপি</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- হিফজ বিভাগ -->
+    <div class="jamat-section" id="hifz-area">
+        <div class="jamat-legend">হিফজ বিভাগের উস্তাদগণ</div>
+        <div class="jamat-inner">
+            <div class="cards-container">
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাওলানা রিয়াদ হোসাইন</h2>
+                        <span class="upadhi-title">👑 মোমেনশাহীর হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01877625965" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01877625965')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">হাফেজ মোঃ ইলিয়াস হাসান</h2>
+                        <span class="upadhi-title">👑 পাইষ্কার হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01775110786" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01775110786')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">হাফেজ মোঃ আল মামুন</h2>
+                        <span class="upadhi-title">👑 কালীবাড়ির হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01891847845" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01891847845')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">হাফেজ মোঃ সারোয়ার হোসেন</h2>
+                        <span class="upadhi-title">👑 গাবতলী হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01920676672" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01920676672')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">হাফেজ মোহাম্মদ রাকিবুল ইসলাম</h2>
+                        <span class="upadhi-title">👑 মুক্তাগাছার হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01943216712" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01943216712')">📋 কপি</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- বাবুর্চি -->
+    <div class="jamat-section" id="baburchi-area">
+        <div class="jamat-legend">বাবুর্চিদের নাম</div>
+        <div class="jamat-inner">
+            <div class="cards-container">
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মোহাম্মদ মুর্তজা</h2>
+                        <span class="upadhi-title">👑 প্রধান বাবুর্চি</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01844865786" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01844865786')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মোহাম্মদ আবু হারিস</h2>
+                        <span class="upadhi-title">👑 সহকারী বাবুর্চি</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01843679339" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01843679339')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মোহাম্মদ শেখ ফরিদ</h2>
+                        <span class="upadhi-title">👑 সহকারী বাবুর্চি</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01859297931" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01859297931')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মোহাম্মদ আকরাম হোসেন</h2>
+                        <span class="upadhi-title">👑 সহকারী বাবুর্চি</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01944435927" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01944435927')">📋 কপি</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- কোর্সের ওস্তাদ -->
+    <div class="jamat-section" id="course-area">
+        <div class="jamat-legend">কোর্সের ওস্তাদ</div>
+        <div class="jamat-inner">
+            <div class="cards-container">
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাওলানা আব্দুল্লাহ আল মামুন</h2>
+                        <span class="upadhi-title">👑 গাজীপুরী হুজুর<br>(উর্দু হাতের লেখা কোর্স)</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01993820301" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01993820301')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাওলানা রিয়াজুদ্দিন মাহদী</h2>
+                        <span class="upadhi-title">👑 গফরগাঁওয়ের হুজুর<br>(আরবি খত্তে রূকয়া কোর্স)</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01710234599" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01710234599')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">শহিদুল ইসলাম</h2>
+                        <span class="upadhi-title">👑 বাংলা এবং দেয়ালিকা কোর্স</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01338540954" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01338540954')">📋 কপি</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- গণিত বিশেষজ্ঞ -->
+    <div class="jamat-section" id="math-area">
+        <div class="jamat-legend">গণিত বিশেষজ্ঞ</div>
+        <div class="jamat-inner">
+            <div class="cards-container">
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাস্টার মতিউর রহমান</h2>
+                        <span class="upadhi-title">👑 ধনবাড়ির হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01913496870" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01913496870')">📋 কপি</button>
+                    </div>
+                </div>
+                <div class="teacher-profile">
+                    <div class="teacher-info">
+                        <h2 class="main-name">মাস্টার হাসিবুল হাসান শান্ত</h2>
+                        <span class="upadhi-title">👑 বকলবাড়ী হুজুর</span>
+                    </div>
+                    <div class="action-box">
+                        <a href="tel:01687481155" class="phone-button">📞 কল করুন</a>
+                        <button class="copy-btn" onclick="copyNum('01687481155')">📋 কপি</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- কপি নোটিফিকেশন -->
+<div id="toast">নম্বরটি সফলভাবে কপি হয়েছে!</div>
+
+<!-- ==========================================================
+     FIREBASE & LOCALSTORAGE DATA SYNC SCRIPT
+     (মূল অ্যাপের সাথে সম্পূর্ণ সামঞ্জস্যপূর্ণ)
+     ========================================================== -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, getDocs, query, where, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBV1PQDsT5vRxjT_nm72uttgkZYwK0tjfE",
+    authDomain: "abnaye-darul-uloom.firebaseapp.com",
+    projectId: "abnaye-darul-uloom",
+    storageBucket: "abnaye-darul-uloom.firebasestorage.app",
+    messagingSenderId: "973857113265",
+    appId: "1:973857113265:web:d04e29b26b442f4d0e0e90"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// মূল অ্যাপের সাথে একই ডিফল্ট আইকন
+const DEFAULT_ICONS = {
+    teacher: 'Delf_teacher.png',
+    student: 'Delf_student.png',
+    member: 'Delf_membar.png'
+};
+
+// মূল অ্যাপের findImageLink ফাংশন (কপি)
+function findImageLink(data, role) {
+    if (!data || typeof data !== "object") return "";
+    var possibleKeys = ["ছবির_লিংক","ছবি_লিংক","প্রোফাইল_ছবি","image","imageUrl","photoUrl","photo","profileImage","profile_image","avatar","pic","ছবি","ফটো"];
+    for (var i = 0; i < possibleKeys.length; i++) {
+        var val = data[possibleKeys[i]];
+        if (val && typeof val === "string" && val.trim() !== "" && val !== "None" && val !== "null") {
+            return val.trim();
+        }
+    }
+    for (var key in data) {
+        if (typeof data[key] === "object" && data[key] !== null) {
+            var nested = findImageLink(data[key], role);
+            if (nested) return nested;
+        }
+    }
+    return "";
+}
+
+function getProfileImageSrc(data, role) {
+    var img = findImageLink(data, role);
+    if (img && img.trim() !== "") return img;
+    return DEFAULT_ICONS[role] || DEFAULT_ICONS.student;
+}
+
+function setUserUI(name, photoUrl) {
+    var nameEl = document.getElementById("sharedUserName");
+    var photoEl = document.getElementById("sharedUserPhoto");
+    if (nameEl && name) {
+        nameEl.innerText = name;
+    }
+    if (photoEl && photoUrl) {
+        photoEl.src = photoUrl;
+        photoEl.onerror = function() {
+            // ছবি লোড না হলে ডিফল্ট দেখাবে
+            var role = localStorage.getItem("logged_user_role") || "student";
+            photoEl.src = DEFAULT_ICONS[role] || DEFAULT_ICONS.student;
+        };
+    }
+}
+
+async function loadUserData() {
+    try {
+        // ১. লোকাল স্টোরেজ থেকে মূল তথ্য নেওয়া
+        var role = localStorage.getItem("logged_user_role") || "student";
+        var name = localStorage.getItem("logged_student_name") || "";
+        var docId = localStorage.getItem("logged_doc_id") || "";
+        var subKey = localStorage.getItem("logged_sub_key") || "";
+        var isLoggedIn = localStorage.getItem("kr_mutawassitah_logged_in");
+
+        // শেয়ার্ড ফুল ডেটা থাকলে সেখান থেকে চেষ্টা
+        var sharedFullData = null;
+        try {
+            var raw = localStorage.getItem("shared_user_full_data");
+            if (raw) sharedFullData = JSON.parse(raw);
+        } catch (e) {}
+
+        // ২. নাম সেট করা (যত দ্রুত সম্ভব)
+        if (name) {
+            setUserUI(name, null);
+        }
+
+        // ৩. ডিফল্ট ছবি আগে সেট করা
+        var defaultPhoto = DEFAULT_ICONS[role] || DEFAULT_ICONS.student;
+        setUserUI(name || "দারুল উলুম ধনবাড়ী", defaultPhoto);
+
+        // যদি লগইন না থাকে তাহলে আর এগোনো লাগবে না
+        if (isLoggedIn !== "true" || !name) {
+            return;
+        }
+
+        // ৪. শেয়ার্ড ডেটা থেকে ছবি নেওয়ার চেষ্টা
+        if (sharedFullData) {
+            var photoFromShared = findImageLink(sharedFullData, role);
+            if (photoFromShared) {
+                setUserUI(name, photoFromShared);
+                return; // পাওয়া গেলে Firebase কল করার দরকার নেই
+            }
+        }
+
+        // ৫. রোল অনুযায়ী Firebase থেকে তথ্য আনা
+        if (role === "teacher" && docId) {
+            try {
+                var teacherSnap = await getDocs(collection(db, "teachers"));
+                teacherSnap.forEach(function(d) {
+                    if (d.id === docId) {
+                        var data = d.data();
+                        var teacherObj = null;
+                        if (subKey && data[subKey]) {
+                            teacherObj = data[subKey];
+                        } else {
+                            // subKey না থাকলে নাম মিলিয়ে খোঁজা
+                            for (var k in data) {
+                                if (typeof data[k] === "object" && data[k] && data[k].নাম === name) {
+                                    teacherObj = data[k];
+                                    break;
+                                }
+                            }
+                        }
+                        if (teacherObj) {
+                            var photo = findImageLink(teacherObj, "teacher");
+                            setUserUI(teacherObj.নাম || name, photo || DEFAULT_ICONS.teacher);
+                        }
+                    }
+                });
+            } catch (e) {
+                console.warn("Teacher data load error:", e);
+            }
+        }
+        else if (role === "member" && name) {
+            try {
+                var q = query(collection(db, "সদস্যবৃন্দ"), where("সদস্যের_নাম", "==", name));
+                var snap = await getDocs(q);
+                if (!snap.empty) {
+                    var data = snap.docs[0].data();
+                    var photo = findImageLink(data, "member");
+                    setUserUI(data.সদস্যের_নাম || name, photo || DEFAULT_ICONS.member);
+                }
+            } catch (e) {
+                console.warn("Member data load error:", e);
+            }
+        }
+        else if (role === "student" && name) {
+            try {
+                var q = query(collection(db, "students"), where("name", "==", name));
+                var snap = await getDocs(q);
+                if (!snap.empty) {
+                    var data = snap.docs[0].data();
+                    var photo = findImageLink(data, "student");
+                    setUserUI(data.name || name, photo || DEFAULT_ICONS.student);
+                }
+            } catch (e) {
+                console.warn("Student data load error:", e);
+            }
+        }
+    } catch (err) {
+        console.error("loadUserData error:", err);
+    }
+}
+
+// পেজ লোড হলে চালু
+document.addEventListener("DOMContentLoaded", loadUserData);
+
+// অতিরিক্ত: পেজ ফোকাস পেলে আবার চেক (যদি অন্য ট্যাব থেকে ফিরে আসে)
+window.addEventListener("focus", function() {
+    var name = localStorage.getItem("logged_student_name");
+    if (name) {
+        loadUserData();
+    }
+});
+</script>
+
+<!-- ==========================================================
+     COPY NUMBER SCRIPT
+     ========================================================== -->
+<script>
+    function copyNum(num) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(num).then(function () {
+                showToast();
+            }).catch(function () {
+                fallbackCopyText(num);
+            });
+        } else {
+            fallbackCopyText(num);
+        }
+    }
+
+    function fallbackCopyText(text) {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            var successful = document.execCommand('copy');
+            (successful) && showToast();
+        } catch (err) {
+            console.error('Failed to copy text', err);
+        }
+        document.body.removeChild(textArea);
+    }
+
+    function showToast() {
+        var t = document.getElementById("toast");
+        t.className = "show";
+        setTimeout(function () {
+            t.className = t.className.replace("show", "");
+        }, 2000);
+    }
+</script>
+
+</body>
+</html>
