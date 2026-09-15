@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Service Restricted - Mutawassitah</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
+  /* টেক্সট কপি করা বন্ধ করার CSS */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+html, body{
+  height:100%;
+  width:100%;
+  overflow:hidden;
+  background-color: #0f172a;
+}
+
+body{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg, #0f172a, #111827, #1e293b, #312e81, #0f172a);
+  background-size: 400% 400%;
+  animation: bgAnimation 12s infinite ease-in-out;
+  color:#fff;
+  position: relative;
+  padding: 12px;
+}
+
+@keyframes bgAnimation{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+.blur1, .blur2, .blur3{
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.blur1{ width: 280px; height: 280px; background: #ff9800; opacity: 0.45; top: 5%; left: 5%; animation: float1 6s infinite alternate ease-in-out; }
+.blur2{ width: 250px; height: 250px; background: #00e5ff; opacity: 0.4; bottom: 5%; right: 5%; animation: float2 8s infinite alternate ease-in-out; }
+.blur3{ width: 200px; height: 200px; background: #7c4dff; opacity: 0.45; top: 40%; left: 40%; animation: float1 7s infinite alternate ease-in-out; }
+
+@keyframes float1{ from{ transform: translateY(0px) scale(1); } to{ transform: translateY(40px) scale(1.1); } }
+@keyframes float2{ from{ transform: translateY(0px) scale(1); } to{ transform: translateY(-40px) scale(1.05); } }
+
+.container{
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 12px 14px;
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.header-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.logo{ font-size: 11px; font-weight: bold; letter-spacing: 1px; color: #FFD54F; }
+.brand{ font-size: 13px; font-weight: bold; color: #00e5ff; }
+.icon{ font-size: 36px; margin: 2px 0; animation: pulse 2s infinite; filter: drop-shadow(0 0 10px #FFD54F); }
+@keyframes pulse{ 0%,100%{ transform: scale(1); } 50%{ transform: scale(1.08); } }
+.title{ font-size: 20px; font-weight: bold; background: linear-gradient(90deg, #FFD54F, #ffffff, #FFD54F); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+.message{ 
+  font-size: 11px; 
+  line-height: 1.45; 
+  color: #E5E7EB; 
+  text-align: left; 
+  background: transparent; 
+  padding: 0; 
+  border: none; 
+  overflow: hidden;
+  margin: 4px 0;
+}
+
+.footer-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.button{ display: block; width: 100%; padding: 12px; border-radius: 50px; background: linear-gradient(90deg, #ff9800, #ff5722, #ff9800); background-size: 200% auto; animation: btnGlow 3s linear infinite; color: #fff; text-decoration: none; font-size: 15px; font-weight: bold; border: none; cursor: pointer; text-align: center; box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4); }
+@keyframes btnGlow{ 0%{ background-position: 0% center; } 100%{ background-position: 200% center; } }
+.owner{ font-size: 11px; color: #cbd5e1; letter-spacing: 0.5px; }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(11, 15, 25, 0.92);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-box {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 24px 20px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.modal-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #FFD54F;
+  margin-bottom: 8px;
+}
+
+.modal-desc {
+  font-size: 12px;
+  color: #e2e8f0;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(15, 23, 42, 0.8);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  outline: none;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  -webkit-font-smoothing: antialiased;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.modal-input::placeholder {
+  color: #94a3b8;
+  font-weight: normal;
+  letter-spacing: 0px;
+}
+
+.modal-input:focus {
+  border-color: #00e5ff;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.modal-btn-submit {
+  background: linear-gradient(90deg, #00e5ff, #00838f);
+  color: #fff;
+}
+
+.modal-btn-cancel {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.modal-btn:active {
+  transform: scale(0.95);
+}
+
+.error-text {
+  color: #ff5252;
+  font-size: 11px;
+  margin-top: -10px;
+  margin-bottom: 12px;
+  display: none;
+}
+
+.modal-btn-manual {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 30px;
+  background: rgba(255, 152, 0, 0.2);
+  border: 1px dashed #ff9800;
+  color: #ffb74d;
+  font-size: 13px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  transition: background 0.2s;
+}
+
+.modal-btn-manual:hover {
+  background: rgba(255, 152, 0, 0.3);
+}
+</style>
+</head>
+
+<body>
+<div class="blur1"></div>
+<div class="blur2"></div>
+<div class="blur3"></div>
+<div class="container">
+<div class="header-group">
+<div class="logo">KR PURE APPLICATION LIMITED BD</div>
+<div class="brand">অ্যাপ: মুতাওয়াসসিতাহ </div>
+<div class="icon">⚠️</div>
+<div class="title">SERVICE RESTRICTED</div>
+</div>
+<div class="message" style="font-size: 14.5px; line-height: 1.65; text-align: justify;">
+শৃঙ্খলা রক্ষা, প্ল্যাটফর্মের নিয়মানুবর্তিতা কঠোরভাবে বজায় রাখা
+
+এবং আমাদের গোপনীয় নীতিমালা বারবার অমান্য করার অপরাধে
+
+<b>মুতাওয়াসসিতাহ</b> অ্যাপে থাকা আপনার এই অ্যাকাউন্টটি
+
+আজ চিরতরে এবং স্থায়ীভাবে ব্যান করা হয়েছে।
+
+আমাদের কেন্দ্রীয় নজরদারি ও নিরাপত্তা সিস্টেমের মাধ্যমে
+
+আপনার প্রতিটি ডেটা এবং গতিবিধি পর্যবেক্ষণ করার পরই
+
+এই চূড়ান্ত ও কঠোর শাস্তিমূলক ব্যবস্থা নেওয়া হয়েছে।
+
+এই অ্যাকাউন্টটি শুধু বাতিলই করা হয়নি, বরং আপনার সমস্ত ডিজিটাল অ্যাক্সেস
+
+এবং ডাটাবেজের সাথে আপনার সমস্ত সংযোগ চিরতরে বিচ্ছিন্ন করে দেওয়া হয়েছে।
+
+যদি আপনার কাছে এমনটা মনে হয় যে আপনি কোনো ধরনের দোষ বা অপরাধ করেননি,
+
+তবুও আপনার আইডিটি ব্যান করা হয়েছে, তবে আপনি নিজ দায়িত্বে
+
+ও স্বাধীনভাবে নিচের <b>আপিল করুন</b> বাটনে ক্লিক করে আপিল করতে পারেন।
+
+তবে মনে রাখবেন, এরপরও যদি আপনি কোনো ধরনের ঔদ্ধত্য দেখানোর
+
+বা ভুয়া আপিল করার দুঃসাহস করেন, তবে আমাদের সিস্টেম আপনার বিরুদ্ধে
+
+আরও ভয়ঙ্কর ও কঠোর ডিজিটাল পদক্ষেপ গ্রহণ করতে বাধ্য হবে,
+
+যার সম্পূর্ণ দায়ভার শুধু আপনার নিজের ওপরই বর্তাবে।
+
+এরপর থেকে এই অ্যাকাউন্টে প্রবেশ করার বা এর কোনো সেবা পাওয়ার
+
+আপনার আর কোনো অধিকার বা সুযোগ অবশিষ্ট রইল না।
+</div>
+<div class="footer-group">
+<button class="button" id="triggerModalBtn">আপিল করুন</button>
+<div class="owner">Developed by KR Khalidur Rahman Akondo</div>
+</div>
+</div>
+
+
+<div class="modal-overlay" id="pinModal">
+  <div class="modal-box">
+    <div class="modal-title">শিক্ষার্থী যাচাইকরণ (Student Verification)</div>
+    <div class="modal-desc">আপিলের জন্য সিস্টেম কর্তৃক স্বয়ংক্রিয়ভাবে আপনার ডেটা দিয়ে আবেদনপত্র তৈরি করতে আপনার স্টুডেন্ট পিন প্রদান করুন।</div>
+
+    <input type="password" id="studentPinInput" class="modal-input" placeholder="আপনার স্টুডেন্ট পিন লিখুন" autocomplete="current-password">
+    <div class="error-text" id="pinError">সঠিক পিন পাওয়া যায়নি, পুনরায় চেষ্টা করুন!</div>
+
+    <div class="modal-buttons">
+      <button class="modal-btn modal-btn-cancel" id="modalCancelBtn">বাতিল</button>
+      <button class="modal-btn modal-btn-submit" id="modalSubmitBtn">যাচাই করুন</button>
+    </div>
+
+    <a href="mailto:krpureapplication@gmail.com?subject=Manual%20Appeal%20-%20Mutawassitah%20App&body=জরুরি নির্দেশনা (Manual Appeal Guide):%0A%0A১. ইমেলের সাবজেক্টে আপনার অ্যাকাউন্ট আপিলের বিষয়টি স্পষ্ট লিখবেন।%0A২. ডেসক্রিপশনে আপনার পূর্ণ নাম, স্টুডেন্ট আইডি, পিতার নাম, জন্মতারিখ, শ্রেণি/উপাধি, গ্রাম, ডাকঘর, থানা, জেলা ও পোস্ট কোড সহ বিস্তারিত তথ্য সুন্দরভাবে নিজে লিখে পাঠাবেন।%0A৩. আপিলের বর্ণনায় আপনার অ্যাকাউন্ট ব্যান হওয়ার কারণ এবং কেন আপনার আইডিটি পুনর্বিবেচনা করা উচিত তা স্পষ্টভাবে উল্লেখ করবেন।%0A৪. কোনো ধরনের ভুয়া, বিভ্রান্তিকর বা অসত্য তথ্য প্রদান করলে আপনার আপিল সরাসরি বাতিল বলে গণ্য হবে এবং সিস্টেম স্বয়ংক্রিয়ভাবে আপনার ডিজিটাল অ্যাক্সেস চিরতরে ব্লক করে দেবে।" class="modal-btn-manual" id="manualAppealBtn">নিজেই আপিল পত্র তৈরি করুন</a>
+  </div>
+</div>
+
+<!-- Firebase SDK Modular Import -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+import { getFirestore, collection, getDocs, doc, writeBatch, query, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBV1PQDsT5vRxjT_nm72uttgkZYwK0tjfE",
+  authDomain: "abnaye-darul-uloom.firebaseapp.com",
+  databaseURL: "https://abnaye-darul-uloom-default-rtdb.firebaseio.com",
+  projectId: "abnaye-darul-uloom",
+  storageBucket: "abnaye-darul-uloom.firebasestorage.app",
+  messagingSenderId: "973857113265",
+  appId: "1:973857113265:web:d04e29b26b442f4d0e0e90",
+  measurementId: "G-JF6778L7TL"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getFirestore(app);
+
+const triggerModalBtn = document.getElementById('triggerModalBtn');
+const pinModal = document.getElementById('pinModal');
+const modalCancelBtn = document.getElementById('modalCancelBtn');
+const modalSubmitBtn = document.getElementById('modalSubmitBtn');
+const studentPinInput = document.getElementById('studentPinInput');
+const pinError = document.getElementById('pinError');
+
+triggerModalBtn.addEventListener('click', () => {
+    pinModal.classList.add('active');
+    studentPinInput.value = '';
+    pinError.style.display = 'none';
+    studentPinInput.focus();
+});
+
+modalCancelBtn.addEventListener('click', () => {
+    pinModal.classList.remove('active');
+});
+
+modalSubmitBtn.addEventListener('click', async () => {
+    const enteredPin = studentPinInput.value.trim();
+    if (!enteredPin) {
+        pinError.innerText = "দয়া করে আপনার স্টুডেন্ট পিন লিখুন!";
+        pinError.style.display = 'block';
+        return;
+    }
+
+    modalSubmitBtn.innerText = "যাচাই হচ্ছে...";
+    pinError.style.display = 'none';
+
+    try {
+        const studentsRef = collection(db, "students");
+        const querySnapshot = await getDocs(studentsRef);
+
+        let matchedStudent = null;
+
+        querySnapshot.forEach((document) => {
+            const data = document.data();
+            if (data.pin && String(data.pin).trim() === enteredPin) {
+                matchedStudent = {
+                    id: data.id || document.id,
+                    name: data.name || "নাম পাওয়া যায়নি",
+                    father: data.Father || data.father || "তথ্য পাওয়া যায়নি",
+                    dob: data.dob || "তথ্য পাওয়া যায়নি",
+                    title: data.title || "তথ্য পাওয়া যায়নি",
+                    village: data.village || "তথ্য পাওয়া যায়নি",
+                    post: data.post || "তথ্য পাওয়া যায়নি",
+                    thana: data.thana || "তথ্য পাওয়া যায়নি",
+                    district: data.district || "তথ্য পাওয়া যায়নি",
+                    zip: data.zip || "তথ্য পাওয়া যায়নি",
+                    blood: data.blood || "তথ্য পাওয়া যায়নি",
+                    originalIndex: data.originalIndex || "তথ্য পাওয়া যায়নি"
+                };
+            }
+        });
+
+        if (matchedStudent) {
+            pinModal.classList.remove('active');
+
+            const rawAppealText = `অ্যাকাউন্ট পুনর্বিবেচনার জন্য আপিল (সিস্টেম জেনারেটেড)
+
+অ্যাপের নাম: মুতাওয়াসসিতাহ
+ব্র্যান্ড: KR Pure Application Limited BD
+দেবাপার: KR Khalidur Rahman Akondo
+
+---
+শিক্ষার্থীর তথ্য (ফোন নম্বর ও সোশ্যাল মিডিয়া ব্যতীত):
+আইডি: ${matchedStudent.id}
+শিক্ষার্থীর নাম: ${matchedStudent.name}
+পিতার নাম: ${matchedStudent.father}
+জন্মতারিখ: ${matchedStudent.dob}
+শ্রেণি/উপাধি: ${matchedStudent.title}
+গ্রাম: ${matchedStudent.village}
+ডাকঘর: ${matchedStudent.post}
+থানা: ${matchedStudent.thana}
+জেলা: ${matchedStudent.district}
+পোস্ট কোড: ${matchedStudent.zip}
+রক্তের গ্রুপ: ${matchedStudent.blood}
+---
+
+আপিলের বিষয়বস্তু:
+আমি উপর্যুক্ত তথ্যের অধিকারী একজন নিবন্ধিত ইউজার। সম্প্রতি আমার মুতাওয়াসসিতাহ অ্যাকাউন্টটি রেস্ট্রিক্ট বা ব্যান করা হয়েছে। আমার পিন দিয়ে সিস্টেম কর্তৃক এই আপিলপত্রটি স্বয়ংক্রিয়ভাবে তৈরি করা হয়েছে। ভুলবশত এই ব্যবস্থা নেওয়া হয়ে থাকলে অ্যাকাউন্টটি পুনরায় সক্রিয় করার জন্য বিনীত অনুরোধ জানাচ্ছি।`;
+
+            const base64EncodedData = btoa(unescape(encodeURIComponent(rawAppealText)));
+            const subject = encodeURIComponent("Account Appeal - Mutawassitah App");
+
+            const emailBody = 
+`সিস্টেম দ্বারা স্বয়ংক্রিয়ভাবে তৈরিকৃত অ্যাকাউন্ট আপিল প্রমাণপত্র:
+(System Generated Verification Proof):
+${base64EncodedData}
+
+--- বিনীত নিবেদন ---
+আমার মুতাওয়াসসিতাহ অ্যাপের রেস্ট্রিক্টেড অ্যাকাউন্টটি পুনর্বিবেচনাপূর্বক পুনরায় সচল করার বিনীত অনুরোধ জানাচ্ছি।
+
+স্টুডেন্ট আইডি: ${matchedStudent.id}
+নাম: ${matchedStudent.name}
+পিতার নাম: ${matchedStudent.father}`;
+
+            window.location.href = `mailto:krpureapplication@gmail.com?subject=${subject}&body=${encodeURIComponent(emailBody)}`;
+
+        } else {
+            pinError.innerText = "সঠিক পিন পাওয়া যায়নি, পুনরায় চেষ্টা করুন!";
+            pinError.style.display = 'block';
+        }
+    } catch (error) {
+        console.error("ডেটা ফেচ করতে সমস্যা হয়েছে:", error);
+        pinError.innerText = "নেটওয়ার্ক ত্রুটি! আবার চেষ্টা করুন।";
+        pinError.style.display = 'block';
+    } finally {
+        modalSubmitBtn.innerText = "যাচাই করুন";
+    }
+});
+
+// প্রতি ৫ সেকেন্ড পর পর লোকাল স্টোরেজে থাকা ইনফো দিয়ে ডেটাবেজ চেক করবে এবং ফায়ারবেসের 'অ্যাপ ব্যবহারের অনুমতি' true হলে ইনডেক্সে রিডাইরেক্ট করবে
+function startRealtimePermissionChecker() {
+    const savedName = localStorage.getItem("logged_student_name");
+    const savedPin = localStorage.getItem("logged_student_pin");
+
+    if (!savedName || !savedPin) return;
+
+    setInterval(async () => {
+        try {
+            const q = query(
+                collection(db, "students"),
+                where("name", "==", savedName),
+                where("pin", "==", savedPin)
+            );
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                querySnapshot.forEach((docSnap) => {
+                    const data = docSnap.data();
+                    // ফায়ারবেসের সঠিক ফিল্ড 'অ্যাপ ব্যবহারের অনুমতি' চেক করা হচ্ছে
+                    if (data["অ্যাপ ব্যবহারের অনুমতি"] === true) {
+                        window.location.href = "index.html";
+                    }
+                });
+            }
+        } catch (e) {
+            console.error("Permission check error:", e);
+        }
+    }, 5000);
+}
+
+startRealtimePermissionChecker();
+</script>
+
+</body>
+</html>
