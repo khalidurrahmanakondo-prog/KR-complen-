@@ -3,89 +3,215 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KR Calculator A - অভিযোগ ফরম</title>
+<title>KR Pure Applications</title>
+
 <style>
-body { font-family: 'Arial', sans-serif; margin:0; padding:0; background: linear-gradient(120deg, #f6d365, #fda085, #fbc2eb, #a6c1ee); min-height:100vh; }
-.container { max-width:520px; margin:50px auto; background: linear-gradient(135deg,#ffffff,#ffe6f0); padding:30px; border-radius:20px; box-shadow:0 20px 40px rgba(0,0,0,0.3); transition:transform 0.3s ease; }
-.container:hover { transform: translateY(-5px); }
-h2 { text-align:center; font-size:24px; font-weight:bold; background: linear-gradient(90deg,#ff6f61,#fcb045,#43cea2,#185a9d); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:25px; }
-label { font-weight:bold; color:#333; }
-input, select, textarea { width:100%; padding:12px; margin-top:6px; margin-bottom:15px; border-radius:12px; border:2px solid #ccc; font-size:15px; background: linear-gradient(90deg,#e0c3fc,#8ec5fc); transition:all 0.3s ease; }
-input:focus, select:focus, textarea:focus { border-color:#ff6f61; box-shadow:0 0 8px rgba(255,111,97,0.6); outline:none; }
-button { width:100%; padding:15px; font-size:16px; font-weight:bold; border-radius:12px; border:none; cursor:pointer; background: linear-gradient(45deg,#ff9a9e,#fad0c4,#a1c4fd,#c2e9fb); color:#fff; transition:0.3s ease; }
-button:hover { background: linear-gradient(45deg,#43cea2,#185a9d,#ff6f61,#fcb045); transform:scale(1.03); }
-.ticket { background: linear-gradient(90deg,#ffecd2,#fcb69f); padding:12px; border-radius:12px; margin-bottom:15px; text-align:center; font-weight:bold; color:#333; box-shadow:0 5px 15px rgba(0,0,0,0.2); }
-.success { display:none; text-align:center; color:#28a745; font-weight:bold; font-size:16px; margin-top:12px; }
-.footer { text-align:center; margin-top:25px; font-size:13px; color:#555; font-weight:bold; }
-@media(max-width:550px){ .container { margin:20px; padding:20px; } h2{ font-size:20px; } }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 720x1600 Aspect Ratio Container for Laptop/Desktop */
+.app-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 450px; /* ল্যাপটপে 720x1600 রেশিও বজায় রাখবে */
+    max-height: 1000px;
+    aspect-ratio: 720 / 1600;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* 720x1600 exact image scaling */
+.splash {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    /* 720x1600 পিক্সেলে ছবিকে স্ট্রেচ/ফিট করার জন্য */
+    background: url("app_open.png") center center / 100% 100% no-repeat;
+}
+
+/* Bottom content */
+.bottom-content {
+    position: absolute;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Circular Loader Container */
+.circle-loader {
+    position: relative;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: conic-gradient(#087A38 0deg, rgba(255, 255, 255, 0.1) 0deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+
+/* Inner overlay for hollow circle */
+.circle-loader::before {
+    content: "";
+    position: absolute;
+    width: 53px;
+    height: 53px;
+    border-radius: 50%;
+    background: #000;
+}
+
+/* Percentage text inside circle */
+.loading-percent {
+    position: relative;
+    z-index: 2;
+    color: #FFD700;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0 0 5px #000;
+}
+
+/* Green loading track */
+.loading-track {
+    position: relative;
+    width: 82%;
+    max-width: 380px;
+    height: 12px;
+    background: #087A38;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(0,0,0,0.9), inset 0 0 5px rgba(0,0,0,0.7);
+}
+
+/* Golden loading bar */
+.loading-fill {
+    position: relative;
+    width: 0%;
+    height: 100%;
+    background: #FFD700;
+    border-radius: 50px;
+    overflow: hidden;
+    animation: loading 5s linear forwards;
+}
+
+/* Golden shine effect */
+.loading-fill::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -70px;
+    width: 70px;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.9),
+        transparent
+    );
+    animation: shine 5s linear forwards;
+}
+
+/* Linear Bar Animation (5 seconds) */
+@keyframes loading {
+    from { width: 0%; }
+    to { width: 100%; }
+}
+
+/* Shine movement */
+@keyframes shine {
+    from { left: -70px; }
+    to { left: 100%; }
+}
+
+/* Company name */
+.company-name {
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-align: center;
+    text-shadow: 0 1px 4px #000, 0 0 8px #000;
+}
 </style>
 </head>
 
 <body>
-<div class="container">
 
-<h2>📩 KR Calculator A - অভিযোগ ফরম</h2>
-<div class="ticket" id="ticket"></div>
+<div class="app-container">
+    <div class="splash">
+        <div class="bottom-content">
 
-<form id="complaintForm" action="https://formsubmit.co/khalidurrahmanakondo@gmail.com" method="POST" enctype="multipart/form-data">
+            <!-- Circular Loader with Percentage inside -->
+            <div class="circle-loader" id="circleLoader">
+                <div class="loading-percent" id="loadingPercent">0%</div>
+            </div>
 
-<input type="hidden" name="_subject" value="KR Calculator A - নতুন অভিযোগ">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_captcha" value="false">
+            <!-- Green track + Golden bar -->
+            <div class="loading-track">
+                <div class="loading-fill"></div>
+            </div>
 
-<label>👤 নাম</label>
-<input type="text" name="name" required>
+            <!-- Company name -->
+            <div class="company-name">
+                KR pure applications limited bd
+            </div>
 
-<label>📍 ঠিকানা</label>
-<input type="text" name="address" required>
-
-<label>📞 ফোন নাম্বার</label>
-<input type="tel" name="phone" id="phone" placeholder="Ex: 017XXXXXXXX" required>
-
-<label>📧 উত্তর পাওয়ার জন্য একটি ইমেইল লিখুন</label>
-<input type="email" name="email" placeholder="example@gmail.com" required>
-
-<label>📂 অভিযোগের ধরন</label>
-<select name="type">
-<option>ক্যালকুলেটর ঠিকমতো কাজ করছে না</option>
-<option>সমাধান দেখাচ্ছে না</option>
-<option>অঙ্ক ভুল</option>
-<option>উত্তর দিতে পারছে না</option>
-<option>লোডিং ধীর</option>
-<option>অ্যাড আসে</option>
-<option>অন্য কোনো কিছু</option>
-</select>
-
-<label>📝 অভিযোগ লিখুন</label>
-<textarea name="message" rows="5" required></textarea>
-
-<label>📸 ছবি আপলোড (অবশ্যক)</label>
-<input type="file" name="file" required>
-
-<button type="submit">🚀 অভিযোগ পাঠান</button>
-
-</form>
-
-<div class="success" id="success">✅ আপনার অভিযোগ সফলভাবে পাঠানো হয়েছে!</div>
-<div class="footer">KR Calculator A - Complaint Center</div>
+        </div>
+    </div>
 </div>
 
 <script>
-// Auto Ticket Number
-let ticket="TICKET-"+Math.floor(100000+Math.random()*900000);
-document.getElementById("ticket").innerHTML="🎫 Ticket ID : "+ticket;
+const loadingTime = 5000;
+const percentText = document.getElementById("loadingPercent");
+const circleLoader = document.getElementById("circleLoader");
 
-// Mobile Number Validation & Success Message
-document.getElementById("complaintForm").addEventListener("submit", function(e){
-    let phone=document.getElementById("phone").value.trim();
-    let phonePattern=/^01[3-9]\d{8}$/;
-    if(!phonePattern.test(phone)){
-        alert("সঠিক মোবাইল নাম্বার লিখুন (যেমন 017XXXXXXXX)");
-        e.preventDefault();
-        return false;
+const startTime = Date.now();
+
+const percentTimer = setInterval(function () {
+    const elapsed = Date.now() - startTime;
+    let progress = elapsed / loadingTime;
+
+    if (progress >= 1) {
+        progress = 1;
+        clearInterval(percentTimer);
     }
-    document.getElementById("success").style.display="block";
-});
+
+    let percent = Math.floor(progress * 100);
+    percentText.textContent = percent + "%";
+
+    let degrees = progress * 360;
+    circleLoader.style.background = `conic-gradient(#087A38 ${degrees}deg, rgba(255, 255, 255, 0.1) ${degrees}deg)`;
+
+}, 10);
+
+/* ৫ সেকেন্ড পর রিডাইরেক্ট */
+setTimeout(function () {
+    const newWindow = window.open("abnaye_darul_uloom.html", "_blank");
+    if (!newWindow) {
+        window.location.href = "abnaye_darul_uloom.html";
+    }
+}, loadingTime);
 </script>
+
 </body>
 </html>
