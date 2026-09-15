@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>মাদ্রাসা স্মৃতি সংরক্ষণ প্ল্যাটফর্ম</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Noto Sans Bengali',sans-serif;
+  /* টেক্সট সিলেক্ট এবং কপি করা সম্পূর্ণ বন্ধ করার জন্য */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body{
+  background:#0a0f1c;
+  color:#e5e7eb;
+  line-height:1.9;
+}
+
+.bg{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(34,197,94,0.15), transparent 45%),
+    radial-gradient(circle at 80% 40%, rgba(59,130,246,0.12), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(168,85,247,0.10), transparent 50%);
+  z-index:-1;
+}
+
+.header{
+  text-align:center;
+  padding:70px 20px 30px;
+}
+
+.header img{
+  width:110px;
+  height:110px;
+  border-radius:50%;
+  border:3px solid #22c55e;
+  box-shadow:0 0 35px rgba(34,197,94,0.35);
+  object-fit:cover;
+  pointer-events: none; /* ছবির উপর ক্লিক বা ড্র্যাগ করা রোধ করতে */
+}
+
+.header h1{
+  margin-top:18px;
+  font-size:34px;
+  font-weight:700;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+.section{
+  margin-top:28px;
+  padding:26px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px;
+  backdrop-filter: blur(10px);
+}
+
+.point {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.point:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+footer{
+  text-align:center;
+  padding:40px;
+  color:#64748b;
+  font-size:13px;
+  border-top:1px solid rgba(255,255,255,0.06);
+  margin-top:40px;
+}
+</style>
+</head>
+
+<body oncontextmenu="return false;">
+
+<div class="bg"></div>
+
+<div class="header">
+  <img src="app_icon.png" alt="App Icon">
+  <h1>মাদ্রাসা স্মৃতি সংরক্ষণ প্ল্যাটফর্ম</h1>
+</div>
+
+<div class="container">
+  <div class="section">
+
+    <h2 style="margin-bottom:25px; color:#22c55e; text-align:center;">🌟 এই অ্যাপ ব্যবহারের ফায়দা</h2>
+
+    <div class="point">📌 <strong>১.</strong> স্মৃতি সংরক্ষণ 🧠<br>আমাদের প্রতিদিনের দারস, আলোচনা ও অভিজ্ঞতা সহজে সংরক্ষণ করা যায়।</div>
+    <div class="point">📌 <strong>২.</strong> উস্তাদের কথা সংরক্ষণ 🕌<br>উস্তাদের গুরুত্বপূর্ণ নসীহত ও বয়ান ভবিষ্যতের জন্য সংরক্ষিত থাকে।</div>
+    <div class="point">📌 <strong>৩.</strong> হারিয়ে যাওয়ার ভয় নেই 🔒<br>কাগজে লেখা নোট হারিয়ে গেলেও এখানে সব নিরাপদ থাকে।</div>
+    <div class="point">📌 <strong>৪.</strong> সহজে খুঁজে পাওয়া 🔍<br>যে কোনো পুরনো বিষয় দ্রুত সার্চ করে পাওয়া যায়।</div>
+    <div class="point">📌 <strong>৫.</strong> মাদ্রাসা জীবনের ইতিহাস 📖<br>পুরো ছাত্রজীবনের একটি সুন্দর ডিজিটাল ইতিহাস তৈরি হয়।</div>
+    <div class="point">📌 <strong>৬.</strong> ভবিষ্যতে রিভিশন সুবিধা 📚<br>পরীক্ষা বা পুনরালোচনার সময় সহজে পড়া যায়।</div>
+    <div class="point">📌 <strong>৭.</strong> ব্যক্তিগত নোট রাখার সুযোগ ✍️<br>প্রতিটি ছাত্র নিজের আলাদা নোট সংরক্ষণ করতে পারে।</div>
+    <div class="point">📌 <strong>৮.</strong> গ্রুপ মেমোরি শেয়ারিং 👥<br>বন্ধুদের সাথে স্মৃতি ও দারস শেয়ার করা যায়।</div>
+    <div class="point">📌 <strong>৯.</strong> অনুপ্রেরণা পাওয়া 💡<br>পুরনো উস্তাদের কথা পড়ে আবার নতুন উদ্দীপনা আসে।</div>
+    <div class="point">📌 <strong>১০.</strong> দারস ভুলে না যাওয়া 🧾<br>গুরুত্বপূর্ণ মাসআলা ও ব্যাখ্যা ভুলে যাওয়ার সম্ভাবনা কমে যায়।</div>
+    <div class="point">📌 <strong>১১.</strong> সময় বাঁচায় ⏳<br>খাতায় খুঁজে সময় নষ্ট না করে দ্রুত সব পাওয়া যায়।</div>
+    <div class="point">📌 <strong>১২.</strong> শৃঙ্খলা তৈরি হয় 📊<br>সব কিছু গুছিয়ে রাখার অভ্যাস গড়ে ওঠে।</div>
+    <div class="point">📌 <strong>১৩.</strong> মোবাইলেই সব এক জায়গায় 📱<br>বই-খাতা বহন না করেও সব কিছু হাতের কাছে থাকে।</div>
+    <div class="point">📌 <strong>১৪.</strong> অফলাইন/অনলাইন সুবিধা 🌐<br>ইন্টারনেট থাকলে বা না থাকলেও ব্যবহার করা যায়।</div>
+    <div class="point">📌 <strong>১৫.</strong> ভবিষ্যৎ প্রজন্মের জন্য সম্পদ 🧒<br>পরবর্তী ছাত্ররা আমাদের অভিজ্ঞতা থেকে শিখতে পারবে।</div>
+    <div class="point">📌 <strong>১৬.</strong> দোয়া ও নসীহত সংরক্ষণ 🤲<br>উস্তাদদের দোয়া ও গুরুত্বপূর্ণ নসীহত এক জায়গায় থাকে।</div>
+    <div class="point">📌 <strong>১৭.</strong> আত্মসমালোচনার সুযোগ 🪞<br>নিজের উন্নতি ও দুর্বলতা বোঝা সহজ হয়।</div>
+    <div class="point">📌 <strong>১৮.</strong> পড়াশোনায় আগ্রহ বৃদ্ধি 📈<br>পুরনো পরিশ্রম ও অর্জন দেখে নতুন করে মনোযোগ আসে।</div>
+    <div class="point">📌 <strong>১৯.</strong> দলগত ঐক্য তৈরি 🤝<br>একই প্ল্যাটফর্মে সবাই যুক্ত থাকায় বন্ধন শক্ত হয়।</div>
+    <div class="point">📌 <strong>২০.</strong> ডিজিটাল ইসলামিক শিক্ষার পদক্ষেপ 🖥️<br>এটি আধুনিক প্রযুক্তির মাধ্যমে দ্বীনি ইলম সংরক্ষণের একটি সুন্দর উদ্যোগ।</div>
+
+    <hr style="margin:40px 0; border-color:rgba(255,255,255,0.1);">
+
+    <h2 style="margin-bottom:25px; color:#22c55e; text-align:center;">🌙📚 আমাদের মাদ্রাসা স্মৃতি সংরক্ষণ প্ল্যাটফর্ম</h2>
+    <p>আমরা নাহবেমীর জামাতের ছাত্র। আমাদের জীবনের প্রতিটি দিনই দারস, ইলম, উস্তাদের নসীহত আর মাদ্রাসার পরিবেশে ভরা। কিন্তু অনেক সময় দেখা যায়—একটা সুন্দর কথা, একটা গুরুত্বপূর্ণ মাসআলা, কিংবা উস্তাদের গভীর নসীহত আমরা সময়ের সাথে ভুলে যাই।</p>
+    <p style="margin-top: 15px;">এই সমস্যা থেকেই আমাদের এই অ্যাপ/সাইটের জন্ম। এটা এমন একটা ডিজিটাল জায়গা, যেখানে আমাদের ইলম, অভিজ্ঞতা, অনুভূতি এবং স্মৃতি—সব একসাথে সংরক্ষিত থাকে 🧠📖</p>
+
+  </div>
+</div>
+
+<footer>
+  © ২০২৬ • মাদ্রাসা স্মৃতি সংরক্ষণ প্ল্যাটফর্ম
+</footer>
+
+<script>
+  // মাউসের রাইট ক্লিক নিষ্ক্রিয় করা
+  document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+  });
+
+  // কিবোর্ড শর্টকাট কপি (Ctrl+C, Ctrl+X, Ctrl+U, Ctrl+S, F12) ব্লক করা
+  document.addEventListener('keydown', function(e) {
+      if (
+          e.key === 'F12' || 
+          (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+          (e.ctrlKey && (e.key === 'U' || e.key === 'c' || e.key === 'x' || e.key === 's' || e.key === 'a'))
+      ) {
+          e.preventDefault();
+          return false;
+      }
+  });
+</script>
+
+</body>
+</html>
