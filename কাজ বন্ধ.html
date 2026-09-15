@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Working Status</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    font-family: Arial, sans-serif;
+}
+
+/* Main container */
+.container {
+    width: 90%;
+    max-width: 340px;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+/* emoji */
+.emoji {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+/* title */
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* description */
+.desc {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #cbd5e1;
+    margin-bottom: 20px;
+}
+
+/* loading bar background */
+.loader {
+    width: 100%;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+/* moving bar */
+.progress {
+    height: 100%;
+    width: 40%;
+    background: linear-gradient(90deg, #22c55e, #3b82f6, #22c55e);
+    border-radius: 50px;
+    animation: move 1.5s linear infinite;
+}
+
+/* continuous movement */
+@keyframes move {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(250%);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="emoji">🌙</div>
+
+    <div class="title">সাময়িক বন্ধ</div>
+
+    <div class="desc">
+        সময় স্বল্পতার কারণে কাজটি আপাতত বন্ধ রাখা হয়েছে।<br> ১ম সাময়িক পরীক্ষার বন্ধের সময়<br>
+        শীঘ্রই আবার কাজ সম্পূর্ণ  করা হবে...<br> ইনশাআল্লাহ 
+    </div>
+
+    <!-- Loading bar -->
+    <div class="loader">
+        <div class="progress"></div>
+    </div>
+</div>
+
+</body>
+</html>
