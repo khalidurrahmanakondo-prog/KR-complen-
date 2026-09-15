@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>দারুল উলূম ধনবাড়ী - পরিচিতি ও লক্ষ্য</title>
+
+<style>
+    :root {
+        --primary-color: #114232; 
+        --gold-color: #ffd700;    
+        --text-dark: #2c3e50;
+        --bg-light: #f4f6f5;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif; -webkit-tap-highlight-color:transparent; }
+    html { scroll-behavior:smooth; }
+    body { background: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+
+    .app { width:100%; max-width:430px; margin:auto; min-height:100vh; background: var(--bg-light); padding-bottom:40px; position: relative; }
+
+    /* ফিরে যান বাটন স্টাইল */
+    .back-button-container {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+
+    .back-capsule-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50px; /* ক্যাপসুল আকৃতি */
+        background: transparent; /* কোনো ব্যাকগ্রাউন্ড নেই */
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .back-capsule-btn:hover {
+        color: var(--gold-color);
+        border-color: var(--gold-color);
+    }
+
+    /* Header Styling */
+    .hero-box { width: 100%; background: var(--primary-color); padding: 40px 20px 30px; text-align: center; color: #fff; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; }
+    .hero-box h1 { font-size: 20px; margin-bottom: 5px; margin-top: 15px; }
+    .hero-box p { color: var(--gold-color); font-size: 14px; font-weight: 600; }
+
+    /* Search Container */
+    .search-box { padding: 0 20px; margin-top: -20px; margin-bottom: 20px; }
+    .search-input { width: 100%; padding: 15px; border-radius: 15px; border: 1px solid #ddd; outline: none; box-shadow: 0 4px 10px rgba(0,0,0,0.05); font-size: 15px; }
+    .search-input:focus { border-color: var(--primary-color); }
+
+    /* Content Cards */
+    .card { width: 90%; margin: 0 auto 20px; padding: 25px; border-radius: 20px; background: #fff; border: 1px solid #e1eae5; box-shadow: 0 2px 8px rgba(0,0,0,0.03); cursor: pointer; transition: all 0.3s ease; }
+    .card-title { font-size: 18px; font-weight: 700; color: var(--primary-color); margin-bottom: 15px; text-align: center; border-bottom: 2px solid var(--primary-color); padding-bottom: 8px; }
+    .card-text { font-size: 15px; text-align: justify; color: #34495e; }
+
+    /* Highlights */
+    .match-highlight { color: #10b981 !important; font-weight: 700; background-color: #f0fdf4; padding: 0 2px; border-radius: 4px; }
+    .static-highlight { background-color: #e8f5e9 !important; border: 1px solid #a5d6a7 !important; transform: scale(1.02); }
+
+    #no-results { text-align: center; color: #e74c3c; display: none; margin-top: 20px; font-weight: 600; }
+
+    .lock-text { -webkit-user-select: none !important; -moz-user-select: none !important; -ms-user-select: none !important; user-select: none !important; }
+</style>
+</head>
+<body>
+    <div class="hero-box lock-text">
+        <h1>আবনায়ে দারুল উলুম বা<br>দারুল উলূম ধনবাড়ী'র</h1>
+        <p>লক্ষ্য ও উদ্দেশ্য</p>
+    </div>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 এখানে লিখে সার্চ করুন...">
+    </div>
+
+    <div id="no-results" class="lock-text">কোনো তথ্য পাওয়া যায়নি!</div>
+
+    <!-- Sections -->
+    <div id="sec1" class="card searchable" onclick="resetSearchAndScroll('sec1')">
+        <div class="card-title lock-text">🎯 দারুল উলূমের লক্ষ্য ও উদ্দেশ্য</div>
+        <div class="card-text text-content">
+            ওহীর শিক্ষা মানবজাতির মেরুদন্ড। মানবজীবনকে সুন্দর, পরিমার্জিত ও আদর্শের প্রতীক হিসেবে গড়ে তুলতে ওহীর শিক্ষার বিকল্প নেই। মানবরচিত শিক্ষা ব্যবস্থা কখনোই মানুষের জীবনে সামগ্রিক কল্যাণ ও সফলতা বয়ে আনতে পারে না এবং জাগতিক ও পরকালীন সুখ শান্তির পূর্ণ নিশ্চয়তা দিতে পারে না। মানুষের জীবনযাত্রার মানোন্নয়ন, ঈমান-আকিদা ও সভ্যতা-সংস্কৃতির যথাযথ সংরক্ষণ এবং সমাজের সকল প্রকার অনৈতিকতা, অনাচার, জাহিলিয়াত ও বিদআত-কুসংস্কারের অবসান ঘটিয়ে সাম্য-মৈত্রী ও ন্যায়-ইনসাফের সমাজ বিনির্মাণে ইলমে ওহীর গুরুত্ব অপরিসীম।
+        </div>
+    </div>
+
+    <div id="sec2" class="card searchable" onclick="resetSearchAndScroll('sec2')">
+        <div class="card-title lock-text">📖 ওহীর শিক্ষা</div>
+        <div class="card-text text-content">
+            ওহীর শিক্ষা সর্বকালে-সর্বক্ষেত্রে সমানভাবে প্রযোজ্য ও গ্রহণযোগ্য। পৃথিবী সৃষ্টির শুরুলগ্ন থেকেই ওহীর শিক্ষা প্রদানের জন্য আল্লাহ তায়ালা আম্বিয়া কেরামের এক সুমহান ধারা প্রেরণ করেছেন, যারা অক্লান্ত পরিশ্রম করে পথহারা মানুষ ও জিন জাতিকে আল্লাহর প্রদর্শিত পথে পরিচালিত করেছেন। সকল যুগেই আল্লাহ তায়ালা এই মহান খেদমতের জন্য নবীদেরকে মনোনীত করেছেন। কেননা, তার জন্য প্রয়োজন ছিল ধৈর্য্যশীল, নিষ্পাপ, দয়ালু ব্যক্তিত্বের অধিকারী লোকের। আর প্রকৃতপক্ষে নবীরাই এর যোগ্য ছিলেন। নবী পরবর্তী যুগে সাহাবায়ে কেরামসহ নবী চরিত্রের অধিকারী অসংখ্য উলামায়ে কেরাম শিক্ষা প্রদানের ধারা অব্যাহত রেখেছেন। তবে সর্বযুগেই ইলমের গতি-প্রবাহ ব্যহত হওয়ার মূলে ছিল আদর্শ শিক্ষকের অনুপস্থিতি। বর্তমানে তার সংকট আরো ব্যাপক।
+        </div>
+    </div>
+
+    <div id="sec3" class="card searchable" onclick="resetSearchAndScroll('sec3')">
+        <div class="card-title lock-text">🏛️ দারুল উলূমের প্রেক্ষাপট</div>
+        <div class="card-text text-content">
+            প্রিয় পাঠক! দারুল উলূম কর্তৃপক্ষ যখন এ ইলমী সংকট অনুভব করল এবং দেখতে পেল, অসংখ্য জ্ঞানপিপাসু তালিবুল ইলম, ইলমে ওহীর বৃক্ষ রোপনের জন্য তাদের হৃদয়ের জমিন বিছিয়ে দিতে প্রস্তুত, কিন্তু তার জন্য কোনো আদর্শ দরদী মালী পাচ্ছে না। দরদী মালীর অনুপস্থিতি তাদেরকে হতাশ ও বঞ্চিত করছে এবং তাদের সামনে ইলম বিলুপ্তির পথ আরো স্পষ্ট হচ্ছে। একদিকে যেমন দূর্বল মেধার অধিকারী ছাত্ররা সঠিক পরিচর্যার অভাবে অন্যদের সাথে পেরে উঠতে না পেরে মনোবল হারিয়ে পথ হারা হয়ে যাচ্ছে, অন্যদিকে মেধাবী শিক্ষার্থীরাও আপন মেধার যথাযথ মূল্যায়ন ও বিকাশ করতে পারছে না। ফলে তারা অধীর আগ্রহে তাকিয়ে আছে পিতৃস্নেহের অধিকারী এমন একজন দরদী শিক্ষকের দিকে, যিনি দরদী মালী হয়ে ছাত্রের হৃদয়ে ইলমে ওহীর বীজ বপন করবেন। আপন সন্তানের মত বড় করবেন। গড়ে তুলবেন ভবিষ্যৎ স্বপ্নসারথী হিসেবে।
+            <br><br>
+            এ পরিস্থিতিতে তারা ইলমের ধারা অব্যাহত রাখতে ও ইলম পিপাসু তৃষ্ণার্ত হৃদয়গুলোকে রহমতের আবে হায়াত দ্বারা তৃপ্ত করতে এগিয়ে এলেন। ছাত্রদের স্বপ্ন বাস্তবায়নের লক্ষ্যে দারুল উলূমের ভিত্তিপ্রস্তর স্থাপন করলেন। পুঁজি বলতে তেমন কিছুই নেই। আছে কেবল মহান আল্লাহর উপর ভরসা ও আশা। হয়তো দয়াময় রাব্বে কারীম ছাত্রদের ভবিষ্যৎ বিনির্মাণের জন্য আমাদেরকে যোগ্য করে তুলবেন। সুতরাং একে আপনি দুঃসাহসিকতাও বলতে পারেন।
+        </div>
+    </div>
+
+    <div id="sec4" class="card searchable" onclick="resetSearchAndScroll('sec4')">
+        <div class="card-title lock-text">⚙️ কর্মপদ্ধতি</div>
+        <div class="card-text text-content">
+            দারুল উলূম কর্তৃপক্ষ ছাত্রদেরকে অভয় বাণী শোনালেন, অনেক বড় হওয়ার স্বপ্ন দেখালেন। বুঝালেন, মানুষ তার স্বপ্নের মত বড়। তুমি যত বড় হওয়ার স্বপ্ন দেখবে, তত বড় হবে। তবে এ স্বপ্ন ঘুমিয়ে নয়; বরং পরিশ্রমের আতিশয্যের সাথে দেখতে হবে। সুতরাং তাদেরকে বললেন, "বেটারা! স্বপ্ন তা নয় যা তুমি ঘুমিয়ে দেখ, স্বপ্ন সেটাই যা তোমাকে ঘুমাতে দেয় না।"
+            <br><br>
+            ছাত্রদের ইলমের সূক্ষ-সূক্ষ বিষয়গুলো হাতে কলমে শিক্ষা দেন। ছোট ছোট ভুলগুলো শুধরে দিতে থাকেন। স্বযত্নে পিতৃস্নেহ ও মমতা দিয়ে ছাত্রের মন ও মননে জায়গা করে নেন। দাওয়াতী কাজের সর্বাধিক প্রয়োজনীয় বাকস্ফুরণের প্রশিক্ষণের জন্য সাপ্তাহিক আরবী, উর্দু ও বাংলা বক্তৃতা সেমিনারের ব্যবস্থা করেন। লেখনীর পিচ্ছিল ময়দানে মজবুত হাতে কলম ধরার জন্য এবং ছাত্রদেরকে আদর্শ কলম সৈনিক হিসেবে গড়ে তোলার জন্য দেয়াল পত্রিকা প্রকাশের উদ্যোগ গ্রহণ করেন। মাসিক ও বার্ষিক মুনাযারার মাধ্যমে তাদের ইলমের ভীত মজবুত করতে থাকেন। হিফযুন নুসূসের প্রতি গুরুত্বারোপ করেন। এর জন্য ভিন্ন ভিন্ন কিতাব হতে প্রতি বছর দুইশতের অধিক হাদীস মুখস্ত করা বাধ্যতামূলক করে দেন। আরবী ভাষায় কথা বলা বাধ্যতামূলক করে দিয়ে আরবী কিতাবাদি বুঝার পথকে সুগম করে দেন।
+        </div>
+    </div>
+
+    <div id="sec5" class="card searchable" onclick="resetSearchAndScroll('sec5')">
+        <div class="card-title lock-text">👨‍🏫 আদর্শ শিক্ষক</div>
+        <div class="card-text text-content">
+            প্রিয় পাঠক! একজন আদর্শ শিক্ষক শুধু জ্ঞান দানই করেন না এবং শুধু কিছু বুলি আওড়িয়েই ক্ষ্যান্ত হয়ে নাম সর্বস্ব শিক্ষক হতে চান না। বরং শিক্ষার্থীদের মন-মগজে ইলমের প্রতি ভালোবাসার বীজ বপন করেন, তাদের অন্তরে তীব্র পিপাসা জাগিয়ে তুলেন এবং নৈতিকতা-মূল্যবোধ, আত্মবিশ্বাস ও ভালো আচরণের শিক্ষা দেন। ছাত্রের অন্তরে উম্মাহর দরদ-ব্যথা জাগিয়ে তুলেন, দ্বীনের জযবা তৈরি করেন এবং ইলমের অন্বেষণে জীবন উৎসর্গ করার মন্ত্র ফুঁকে দেন। যেখানেই দ্বীনের প্রয়োজন, সুস্থ-অসুস্থ যেকোনো অবস্থাতে সেখানেই ছুটে যাওয়ার শিক্ষা দেন। যেকোনো ত্যাগ তিতিক্ষার বিনিময়ে দ্বীনের ঝাণ্ডা সমুন্নত রাখার শিক্ষা দেন। পরিস্থিতি যেমনি হোক না কেন দ্বীনের কাজ সর্বাগ্রে- এ মূলমন্ত্র ছাত্রের মন-মগজে গেঁথে দেন। একটু ফুরসৎ পেলেই দ্বীনের কাজে ঝাপিয়ে পড়ার আদর্শে গড়ে তুলেন। পরীক্ষার দীর্ঘ পরিশ্রমের ক্লান্তি ও ধকল শেষ হতে না হতেই খ্রিস্টান মিশনারী ও অন্যান্য বিধর্মীদের প্ররোচনার শিকার আলাভোলা লোকদের কাছে ইসলামের দাওয়াত পৌঁছানোর জন্য আল্লাহর রাস্তায় বেরিয়ে পড়ার জযবা তৈরি করেন।
+        </div>
+    </div>
+
+    <div id="sec6" class="card searchable" onclick="resetSearchAndScroll('sec6')">
+        <div class="card-title lock-text">✨ স্বপ্ন ও প্রত্যাশা</div>
+        <div class="card-text text-content">
+            সুতরাং কর্তৃপক্ষের স্বপ্ন ও লক্ষ্য হলো- বেশির চেয়ে বেশি তালিবুল ইলম যেন এখানে এসে তাদের ইলমী-আমলী জীবন যাপনের ভীত মজবুতভাবে গড়ে তুলতে পারে। সর্বসাধারণ যেন এ প্রতিষ্ঠানকে তাদের দ্বীন রক্ষার দূর্গ মনে করে প্রতিষ্ঠানকে তাদের দ্বীনি বিষয় সমাধানের একান্ত আপনস্থান হিসেবে হৃদয়ে জায়গা দিতে পারে। কিন্তু এর জন্য সুবিশাল জায়গার প্রয়োজন। মালিকে হাকীকী আল্লাহ যেন দৃষ্টিসীমা পর্যন্ত জায়গার ব্যবস্থা করেন! ইলম-আমলের দুর্ভেদ্য দূর্গ তথা মারকায হিসেবে দারুল উলূমকে কবুল করেন। কর্তৃপক্ষের নেক স্বপ্নগুলো বাস্তবে রূপ দান করেন। (আমীন!)
+            <br><br>
+            <strong>মুফতি আব্দুল্লাহ আল মামুন কাসেমী (গাজীপুরী হুজুর) দা.বা.</strong>
+        </div>
+    </div>
+</div>
+
+<script>
+    var originalTexts = [];
+    var textContainers = document.getElementsByClassName('text-content');
+
+    // Save original content for resetting
+    window.onload = function() {
+        for(let i=0; i<textContainers.length; i++) originalTexts.push(textContainers[i].innerHTML);
+    };
+
+    function performSearch() {
+        let input = document.getElementById('searchInput').value.trim();
+        let cards = document.getElementsByClassName('searchable');
+        let noResults = document.getElementById('no-results');
+        let found = false;
+
+        for(let i=0; i<cards.length; i++) {
+            let contentDiv = textContainers[i];
+            let rawText = originalTexts[i];
+
+            if(input === "") {
+                contentDiv.innerHTML = rawText;
+                cards[i].style.display = "block";
+                found = true;
+            } else {
+                if(rawText.toLowerCase().includes(input.toLowerCase())) {
+                    cards[i].style.display = "block";
+                    let regex = new RegExp("("+input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')+")", "gi");
+                    contentDiv.innerHTML = rawText.replace(regex, '<span class="match-highlight">$1</span>');
+                    found = true;
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+        noResults.style.display = found ? "none" : "block";
+    }
+
+    function resetSearchAndScroll(id) {
+        document.getElementById('searchInput').value = "";
+        performSearch();
+        let el = document.getElementById(id);
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.classList.add('static-highlight');
+        setTimeout(() => el.classList.remove('static-highlight'), 3000);
+    }
+
+    document.getElementById('searchInput').addEventListener('input', performSearch);
+</script>
+
+</body>
+</html>
