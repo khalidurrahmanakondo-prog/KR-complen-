@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="bn" data-secure="true">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KR Pure Applications Limited BD | Global Executive Profile</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #030712;
+            color: #f8fafc;
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(170, 124, 17, 0.03) 0%, transparent 40%);
+            padding-top: 20px;
+        }
+
+        .wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 20px 60px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .top-action-bar {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .fixed-back-btn {
+            background: transparent;
+            color: #ebd07f;
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            border-radius: 30px;
+            outline: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.05);
+        }
+
+        .fixed-back-btn:hover {
+            color: #030712;
+            background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa7c11 100%);
+            border-color: #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            transform: translateX(-3px);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .brand-logo {
+            width: 130px;
+            height: 130px;
+            border-radius: 24px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+            transition: transform 0.3s ease;
+            pointer-events: none;
+        }
+
+        .brand-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 40%, #ebd07f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .tagline {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .column-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .luxury-card {
+            background: rgba(17, 24, 39, 0.75);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+            scroll-margin-top: 40px;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.06);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+
+        .luxury-card:hover {
+            transform: translateY(-4px);
+            border-color: #d4af37;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.18);
+        }
+
+        h2.section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ebd07f;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        p.desc {
+            color: #94a3b8;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: rgba(255, 255, 255, 0.01);
+            padding: 16px 20px;
+            border-radius: 14px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .feature-text strong {
+            color: #fff;
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .feature-text span {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        .executive-profile {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .avatar-glow {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa7c11 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .tech-box {
+            background: rgba(255,255,255,0.01);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .tech-box h5 {
+            color: #ebd07f;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .tech-box p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .member-section {
+            background: rgba(17, 24, 39, 0.75);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.06);
+        }
+
+        .member-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .member-box {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            padding: 25px 20px 20px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+            animation: permanentGoldenGlow 2.5s infinite ease-in-out;
+        }
+
+        @keyframes permanentGoldenGlow {
+            0% { border-color: rgba(212, 175, 55, 0.5); box-shadow: 0 0 12px rgba(212, 175, 55, 0.2); }
+            50% { border-color: #fff; box-shadow: 0 0 28px rgba(212, 175, 55, 0.6), inset 0 0 12px rgba(212, 175, 55, 0.2); }
+            100% { border-color: rgba(212, 175, 55, 0.5); box-shadow: 0 0 12px rgba(212, 175, 55, 0.2); }
+        }
+
+        .member-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa7c11 100%);
+            color: #030712;
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 8px;
+            margin: 0 auto 12px auto;
+            text-transform: uppercase;
+            box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .member-img {
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px auto;
+            display: block;
+            border: 2px solid #d4af37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            position: relative;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .member-info {
+            position: relative;
+            z-index: 1;
+        }
+
+        .member-info h4 {
+            color: #d4af37;
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .member-info p {
+            font-size: 0.92rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .member-work {
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 0.92rem;
+            color: #f1f5f9;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            text-align: center;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
+            gap: 15px;
+            grid-column: 1 / -1;
+        }
+
+        .spinner {
+            width: 45px;
+            height: 45px;
+            border: 4px solid rgba(212, 175, 55, 0.2);
+            border-top: 4px solid #d4af37;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #ebd07f;
+            font-size: 1.05rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+        }
+
+        .email-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa7c11 100%);
+            color: #030712;
+            text-decoration: none;
+            padding: 16px 36px;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .email-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.5);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        footer p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        footer .glow-text {
+            color: #fff;
+            font-weight: 600;
+            background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa7c11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.3rem; }
+            .luxury-card, .member-section { padding: 25px; }
+        }
+    </style>
+</head>
+
+<body data-secure="true">
+
+<div class="wrapper">
+
+    <!-- হেডার -->
+    <header>
+        <img src="kr.png" alt="KR Pure Applications Limited BD Logo" class="brand-logo">
+        <br>
+        <div class="brand-badge">অনুমোদিত ইকোসিস্টেম</div>
+        <h1>KR Pure Applications Limited BD</h1>
+        <p class="tagline">বিশুদ্ধ কোডিং, অভেদ্য সাইবার নিরাপত্তা এবং যুগোপযোগী ডিজিটাল উদ্ভাবনে বিশ্বস্ত এক আন্তর্জাতিক মানের দেশীয় ব্র্যান্ড।</p>
+    </header>
+
+    <!-- মূল কন্টেন্ট -->
+    <div class="column-container">
+
+        <!-- ১ -->
+        <div id="পরিচিতি" class="luxury-card">
+            <h2 class="section-title">🌐 ১. করপোরেট পরিচিতি ও মালিকানা</h2>
+            <p class="desc">
+                এটি বাংলাদেশে প্রতিষ্ঠিত একটি অগ্রগামী, সম্পূর্ণ স্বাধীন এবং স্বয়ংসম্পূর্ণ আইটি ও সফটওয়্যার সল্যুশন প্রস্তুতকারী প্রতিষ্ঠান। মেধা, গভীর কোডিং প্যাশন এবং শতভাগ সততার সমন্বয়ে গঠিত এই ব্র্যান্ডটি একক দূরদর্শী নেতৃত্বে দেশের তথ্যপ্রযুক্তি খাতে এক নতুন বিপ্লবের সূচনা করেছে।
+            </p>
+            <div class="executive-profile">
+                <div class="avatar-glow">👨‍💻</div>
+                <div>
+                    <h4 style="color: #d4af37; font-size: 1.1rem;">KR Khalidur Rahman Akondo</h4>
+                    <p style="color: #ffffff; font-size: 0.85rem;">পিতা: মোঃ রাসেল আকন্দ</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ২ -->
+        <div id="অবস্থান" class="luxury-card">
+            <h2 class="section-title">📍 ২. অবস্থান ও বৈশ্বিক নেটওয়ার্ক</h2>
+            <p class="desc" style="margin-bottom: 15px;"><strong style="color: #fff;">প্রধান কার্যালয়:</strong> বাংলাদেশ</p>
+            <p class="desc">
+                আমাদের সেবার ভৌগোলিক পরিধি স্থানীয় সীমানা ছাড়িয়ে গ্লোবাল ক্লাউড নেটওয়ার্ক এবং আন্তর্জাতিক অ্যাপ স্টোরের মাধ্যমে বিশ্বজুড়ে বিস্তৃত। আধুনিক ক্লাউড কম্পিউটিং এবং ডিসট্রিবিউটেড ইনফ্রাস্ট্রাকচারের কল্যাণে এই প্রতিষ্ঠান সম্পূর্ণ ভার্চুয়াল ও রিমোটলি তাদের বৈশ্বিক কার্যক্রম সফলভাবে পরিচালনা করে।
+            </p>
+        </div>
+
+        <!-- ৩ -->
+        <div id="দর্শন" class="luxury-card">
+            <h2 class="section-title">💡 ৩. নামকরণের পটভূমি ও দর্শন</h2>
+            <p class="desc" style="margin-bottom: 15px;">
+                বর্তমান গ্লোবাল ডিজিটাল বাজারে অসংখ্য ক্ষতিকর ম্যালওয়্যার, স্পাইওয়্যার, ক্লোন অ্যাপ্লিকেশন এবং ডেটা ম্যানিপুলেশনের ঝুঁকি রয়েছে। এই হ্যাকিং ও স্প্যামিংয়ের ভিড়ে ব্যবহারকারীদের শতভাগ খাঁটি, পরিচ্ছন্ন, নিরাপদ এবং কোনো বিরক্তিকর বিজ্ঞাপন ছাড়া একটি প্রিমিয়াম সার্ভিস দেওয়ার কঠোর নৈতিক মানসিকতা থেকেই এই ব্র্যান্ডের জন্ম।
+            </p>
+            <p class="desc">
+                কোডিংয়ের নিখুঁত আর্কিটেকচার ও কাজের সর্বোচ্চ স্বচ্ছতা নিশ্চিত করার এই মূল দর্শনের সাথে যুক্ত হয়েছে এর প্রতিষ্ঠাতা খলিদুর রহমান আকন্দের নামের সিগনেচার রূপ 
+                <span style="color: #d4af37; font-weight: 600;">"KR"</span>, 
+                যা প্রযুক্তির দুনিয়ায় সততা ও আস্থার এক অনন্য আন্তর্জাতিক প্রতীক।
+            </p>
+        </div>
+
+        <!-- ৪ -->
+        <div id="লক্ষ্য" class="luxury-card">
+            <h2 class="section-title">🎯 ৪. ভিশন ও মিশন স্টেটমেন্ট</h2>
+            <p class="desc" style="margin-bottom: 15px;"><strong style="color: #fff;">মিশন:</strong> তথ্যপ্রযুক্তির অত্যন্ত জটিল গাণিতিক ও ব্যাকএন্ড গোলকধাঁধাকে সাধারণ মানুষের কাছে সহজ, সাবলীল, প্রাঞ্জল এবং দৈনিক ব্যবহার উপযোগী এলিট ডিজিটাল টুলে রূপান্তর করা।</p>
+            <p class="desc"><strong style="color: #fff;">ভিশন:</strong> নিজস্ব উদ্ভাবনী প্রোগ্রামিং ও নেক্সট-জেনারেশন সাইবার সিকিউরিটি ফ্রেমওয়ার্কের সঠিক ব্যবহারের মাধ্যমে প্রতিটি স্মার্টফোনে একটি সুরক্ষিত ও দেশীয় প্রযুক্তির ছোঁয়া পৌঁছে দেওয়া এবং আন্তর্জাতিক বাজারে শীর্ষস্থানে নেতৃত্ব দেওয়া।</p>
+        </div>
+
+        <!-- ৫ -->
+        <div id="বিভাগ" class="luxury-card">
+            <h2 class="section-title">🗂️ ৫. কার্যকরী কর্মবিভাগসমূহ</h2>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-text">
+                        <strong>এডু-টেক এবং ইউটিলিটি অ্যাপ্লিকেশনস</strong>
+                        <span>শিক্ষামূলক এবং দৈনন্দিন ব্যবহারিক হিসাব-নিকাশ সহজ করার জন্য বিশেষায়িত অ্যাপ্লিকেশন শাখা।</span>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">🤖</div>
+                    <div class="feature-text">
+                        <strong>স্মার্ট অটোমেশন এবং টেলিগ্রাম বটস</strong>
+                        <span>ব্যবসা এবং ডেটা প্রসেসিং ব্যবস্থাকে সম্পূর্ণ স্বয়ংক্রিয় করার লক্ষ্যে কাস্টম বট শাখা।</span>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-text">
+                        <strong>ক্লাউড ডাটাবেজ এবং সাইবার সিকিউরিটি</strong>
+                        <span>ব্যবহারকারীর ডেটার অভেদ্য সুরক্ষা, সার্ভার ফায়ারওয়্যাল এবং সোর্স কোড প্রোটেকশন শাখা।</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ৬ -->
+        <div id="পোর্টফোলিও" class="luxury-card">
+            <h2 class="section-title">⚙️ ৬. গ্লোবাল প্রজেক্ট পোর্টফোলিও</h2>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    <div style="font-size: 1.5rem; margin-top: 3px;">📐</div>
+                    <div class="feature-text">
+                        <strong>কেআর ক্যালকুলেটর ক এবং খ</strong>
+                        <span>ক্যালকুলেটর 'ক' অনেক লাইনের সোর্স কোডের সমন্বয়ে তৈরি এবং আন্তর্জাতিক স্টোরে সার্টিফাইড, যা গাণিতিক সমস্যার নিখুঁত সমাধান দেয়। ক্যালকুলেটর 'খ' ডিজিটাল জমি পরিমাপ পদ্ধতি নিয়ে তৈরি হচ্ছে।</span>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div style="font-size: 1.5rem; margin-top: 3px;">🤖</div>
+                    <div class="feature-text">
+                        <strong>কেআর টাকা ইনকাম বট</strong>
+                        <span>রিয়েল-টাইম মেসেজিং বট, যা সম্পূর্ণ স্বয়ংক্রিয় কাস্টম রেফারেল, দৈনিক টাস্ক এবং ডেটা প্রসেসিং মেকানিজমে সার্ভিস দেয়।</span>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <div style="font-size: 1.5rem; margin-top: 3px;">🌐</div>
+                    <div class="feature-text">
+                        <strong>ডাইনামিক ক্লাউড আর্কিটেকচার</strong>
+                        <span>ফ্রন্টএন্ডের সাথে হাই-পারফরম্যান্স ক্লাউড ডাটাবেজের নিখুঁত ফিউশন, যা রিয়েল-টাইম রেসপন্স নিশ্চিত করে।</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ৭ -->
+        <div id="প্রযুক্তি" class="luxury-card">
+            <h2 class="section-title">🛠️ ৭. মেথডোলজি ও প্রযুক্তিগত মানদণ্ড</h2>
+            <div class="tech-grid">
+                <div class="tech-box">
+                    <h5>📲 মোবাইল টার্মিনাল ডেভেলপমেন্ট</h5>
+                    <p>মোবাইল-বেসড লিনাক্স টার্মিনাল এনভায়রনমেন্ট ব্যবহার করে অ্যাডভান্সড স্ক্রিপ্টিং করা হয়।</p>
+                </div>
+                <div class="tech-box">
+                    <h5>🛡️ এন্টারপ্রাইজ সিকিউরিটি</h5>
+                    <p>অ্যাডভান্সড সিকিউরিটি রুলস এবং সোর্স কোড মিনিফিকেশন প্রযুক্তির সাহায্যে সর্বোচ্চ ডেটা নিরাপত্তা নিশ্চিত করা হয়।</p>
+                </div>
+                <div class="tech-box">
+                    <h5>🔄 গিটহাব সিঙ্ক</h5>
+                    <p>গিটহাবের মাধ্যমে অ্যাপ্লিকেশনের ইন্টারনাল পলিসি ও নোটিশ রিয়েল-টাইমে সিঙ্ক এবং আপডেট করা হয়।</p>
+                </div>
+                <div class="tech-box">
+                    <h5>🇧🇩 খাঁটি ইউজার এক্সপেরিয়েন্স</h5>
+                    <p>সিস্টেম রিপোর্ট এবং ইন্টারফেসে কৃত্রিম বা অস্পষ্ট শব্দ বর্জন করে সম্পূর্ণ নির্ভুল ও মার্জিত মাতৃভাষা ব্যবহার করা হয়।</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ৮ -->
+        <div id="সদস্যবৃন্দ" class="member-section">
+            <h2 class="section-title">👥 ৮. প্রাতিষ্ঠানিক সদস্যবৃন্দ ও কৃতজ্ঞতা প্রকাশ</h2>
+            <p class="desc" style="margin-bottom: 20px;">
+                KR Pure Applications Limited BD-এর এই যাত্রাকে সফল ও গতিশীল করে তুলতে যাঁদের ঐকান্তিক প্রচেষ্টা ও অমূল্য অবদান রয়েছে, তাঁদের প্রতি আমাদের গভীর কৃতজ্ঞতা ও শ্রদ্ধা জ্ঞাপন করছি:
+            </p>
+            <div id="সদস্যদের_গ্রিড_ধারক" class="member-grid">
+                <div class="loading-container">
+                    <div class="spinner"></div>
+                    <div class="loading-text">ফায়ারবেস থেকে সদস্যদের তথ্য ফেচ করা হচ্ছে... অনুগ্রহ করে অপেক্ষা করুন</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- যোগাযোগ -->
+    <div class="contact-section">
+        <a href="mailto:krpureapplication@gmail.com" class="email-btn">
+            📧 আমাদের সাথে যোগাযোগ করুন
+        </a>
+    </div>
+
+    <!-- ফুটার -->
+    <footer>
+        <p>© ২০২৬ <span class="glow-text">KR Pure Applications Limited BD</span>। সর্বস্বত্ব সংরক্ষিত।</p>
+        <p style="font-size: 0.85rem; margin-top: 8px; color: rgba(255,255,255,0.3);">বিশ্বব্যাপী স্থপতি KR Khalidur Rahman Akondo</p>
+    </footer>
+
+</div>
+
+<!-- ফায়ারবেস কম্প্যাট স্ক্রিপ্টস -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+    // অটোমেটিক সিকিউরিটি ও প্রাইভেসি প্রটেকশন হ্যান্ডলার
+    document.addEventListener("DOMContentLoaded", function() {
+        const isSecurePage = document.body.getAttribute("data-secure") === "true" || 
+                             document.documentElement.getAttribute("data-secure") === "true";
+
+        if (isSecurePage) {
+            // প্রাইভেসি ওভারলে পর্দা তৈরি
+            const shield = document.createElement('div');
+            shield.id = 'dynamic-privacy-shield';
+            shield.innerHTML = 'নিরাপত্তা ও গোপনীয়তা রক্ষার্থে এই পেজে স্ক্রিনশট ও রেকর্ডিং নিষিদ্ধ';
+            shield.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+                background-color: #030712; z-index: 999999; display: none;
+                align-items: center; justify-content: center; color: #d4af37;
+                font-size: 1.5rem; font-weight: 700; text-align: center;
+                font-family: 'Hind Siliguri', sans-serif;
+            `;
+            document.body.appendChild(shield);
+
+            const triggerShield = () => { shield.style.display = 'flex'; };
+            const hideShield = () => { shield.style.display = 'none'; };
+
+            window.addEventListener('blur', triggerShield);
+            window.addEventListener('focus', hideShield);
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) triggerShield();
+                else hideShield();
+            });
+
+            // কপি ও শর্টকাট ব্লক
+            document.addEventListener('contextmenu', e => e.preventDefault());
+            document.addEventListener('keydown', e => {
+                if (e.key === 'F12' || (e.ctrlKey && ['U', 'S', 'C', 'X', 'I', 'J'].includes(e.key.toUpperCase()))) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        }
+    });
+
+    const ফায়ারবেস_কনফিগ = {
+        apiKey: "AIzaSyBV1PQDsT5vRxjT_nm72uttgkZYwK0tjfE",
+        authDomain: "abnaye-darul-uloom.firebaseapp.com",
+        projectId: "abnaye-darul-uloom",
+        storageBucket: "abnaye-darul-uloom.firebasestorage.app",
+        messagingSenderId: "973857113265",
+        appId: "1:973857113265:web:d04e29b26b442f4d0e0e90",
+    };
+
+    let ফায়ারবেস_ইনস্ট্যান্স;
+    if (!firebase.apps.length) {
+        ফায়ারবেস_ইনস্ট্যান্স = firebase.initializeApp(ফায়ারবেস_কনফিগ);
+    } else {
+        ফায়ারবেস_ইনস্ট্যান্স = firebase.app();
+    }
+
+    const ডাটাবেজ = firebase.firestore();
+
+    const ফলব্যাক_ছবির_তালিকা = {
+        "KR Khalidur Rahman Akondo": "https://i.ibb.co/5g22Pt0C/1780564411567.jpg",
+        "TF তোফায়েল আহমাদ": "https://i.ibb.co/B5wsNccW/IMG-20260604-WA0000.jpg",
+        "মোঃ মাসউদুর রহমান": "https://i.ibb.co/prwvVX9F/IMG-870.png"
+    };
+
+    async function ফায়ারবেস_থেকে_সদস্যগণ_লোড_করুন() {
+        const ধারক = document.getElementById('সদস্যদের_গ্রিড_ধারক');
+        let এইচটিএমএল_কন্টেন্ট = '';
+
+        try {
+            const স্ন্যাপশট = await ডাটাবেজ.collection("সদস্যবৃন্দ").get();
+
+            if (স্ন্যাপশট.empty) {
+                ধারক.innerHTML = `<p style="text-align:center; color:#94a3b8; grid-column:1/-1;">ফায়ারবেসে কোনো সদস্যের ডেটা পাওয়া যায়নি।</p>`;
+                return;
+            }
+
+            স্ন্যাপশট.forEach((ডকুমেন্ট) => {
+                const ডাটা = ডকুমেন্ট.data();
+                
+                const নাম = ডাটা.সদস্যের_নাম || ডকুমেন্ট.id;
+                const পদবী = ডাটা.পদবী || '';
+                const পিতার_নাম = ডাটা.পিতার_নাম || '';
+                const কাজের_বিবরণ = ডাটা.কাজের_বিবরণ || '';
+
+                const ছবি_লিংক = ডাটা.শুধু_ইমেজ || ডাটা.প্রোফাইল_ছবি || ফলব্যাক_ছবির_তালিকা[নাম] || '';
+
+                এইচটিএমএল_কন্টেন্ট += `
+                    <div class="member-box">
+                        <div class="member-tag">${পদবী}</div>
+                        <img src="${ছবি_লিংক}" class="member-img" alt="${নাম}">
+                        <div class="member-info">
+                            <h4>${নাম}</h4>
+                            <p>পিতা: ${পিতার_নাম}</p>
+                            <div class="member-work">${কাজের_বিবরণ}</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            ধারক.innerHTML = এইচটিএমএল_কন্টেন্ট;
+
+        } catch (ত্রুটি) {
+            console.error("ফায়ারবেস থেকে ডেটা ফেচ করতে সমস্যা হয়েছে: ", ত্রুটি);
+            ধারক.innerHTML = `<p style="text-align:center; color:#ef4444; grid-column:1/-1;">ডেটা লোড করতে ব্যর্থ হয়েছে। ইন্টারনেট কানেকশন চেক করুন।</p>`;
+        }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        ফায়ারবেস_থেকে_সদস্যগণ_লোড_করুন();
+    });
+
+    function ড্যাশবোর্ডে_যান() {
+        window.location.href = 'ড্যাশবোর্ড.html';
+    }
+</script>
+
+</body>
+</html>
