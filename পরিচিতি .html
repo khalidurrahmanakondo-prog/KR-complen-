@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>দারুল উলূম ধনবাড়ী, টাঙ্গাইল</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html{
+    scroll-behavior:smooth;
+    overflow-x:hidden;
+}
+
+body{
+    background:#f4f6f5; 
+    color: #2c3e50;
+    overflow-x:hidden;
+    -webkit-overflow-scrolling:touch;
+}
+
+.app{
+    width:100%;
+    max-width:430px;
+    margin:auto;
+    min-height:100vh;
+    background:#f4f6f5;
+    position:relative;
+    padding-bottom:60px;
+}
+
+/* TOP BAR FOR BACK BUTTON */
+.top-action-bar {
+    width: 100%;
+    background: #114232;
+    padding: 15px 20px 5px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* CAPSULE BACK BUTTON (NO BACKGROUND, GREEN BORDER) */
+.fixed-back-btn {
+    background: transparent; /* কোনো ব্যাকগ্রাউন্ড নেই */
+    color: #10b981; /* উজ্জ্বল সবুজ টেক্সট */
+    padding: 6px 16px;
+    font-size: 13.5px;
+    font-weight: 700;
+    border: 2px solid #10b981; /* সবুজ ক্যাপসুল বর্ডার */
+    border-radius: 30px; /* ক্যাপসুল শেপ */
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.fixed-back-btn:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+    transform: translateX(-2px);
+}
+
+/* HERO BANNER */
+.hero-madrasa-box {
+    width: 100%;
+    background: #114232; 
+    padding: 10px 20px 25px; /* বাটনের নিচ থেকে শুরু হওয়ার জন্য টপ প্যাডিং অ্যাডজাস্ট করা হয়েছে */
+    text-align: center;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.hero-madrasa-box h1 {
+    color: #ffffff; 
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.hero-madrasa-box p {
+    color: #ffd700; 
+    font-size: 13.5px;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.15);
+    padding: 5px 14px;
+    border-radius: 30px;
+    display: inline-block;
+}
+
+/* SEARCH BAR */
+.search-container {
+    padding: 0 20px;
+    margin-top: -20px; 
+    margin-bottom: 20px;
+}
+.search-wrapper {
+    width: 100%;
+    background: #ffffff; 
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    padding: 2px 18px;
+    border: 1px solid #d2ded7;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.search-wrapper span {
+    color: #114232;
+    font-size: 16px;
+    margin-right: 10px;
+}
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 14px 0;
+    font-size: 15px;
+    color: #114232;
+    font-weight: 500;
+    background: transparent;
+}
+
+/* INDEX CARD */
+.index-card {
+    width: 90%;
+    margin: 10px auto 25px;
+    padding: 22px 20px;
+    border-radius: 28px;
+    background: #ffffff;
+    border: 1px solid #e1eae5;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+
+.index-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #114232;
+    margin-bottom: 16px;
+    border-bottom: 2px solid #114232;
+    padding-bottom: 4px;
+    display: inline-block;
+}
+
+.index-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.index-item {
+    font-size: 14.5px;
+    color: #2c3e50;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+.index-item::before {
+    content: "●";
+    color: #114232;
+    font-size: 11px;
+}
+
+/* CONTENT BOX */
+.content-box {
+    width: 90%;
+    margin: 0 auto 25px;
+    padding: 28px 22px;
+    border-radius: 32px; 
+    background: #ffffff; 
+    background-image: radial-gradient(circle at top right, #eef7f4 0%, #eef7f4 35%, transparent 35%),
+                      radial-gradient(circle at bottom left, #eef7f4 0%, #eef7f4 25%, transparent 25%);
+    border: 1px solid #e2eee7;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.02);
+    scroll-margin-top: 25px;
+    cursor: pointer;
+    transition: box-shadow 0.4s, border-color 0.4s, background-color 0.4s;
+}
+
+.sub-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #114232; 
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(17, 66, 50, 0.1);
+    padding-bottom: 8px;
+    text-align: center; 
+}
+
+.box-desc {
+    font-size: 14.5px;
+    color: #2c3e50; 
+    line-height: 1.8;
+    text-align: justify;
+}
+
+.highlight-list {
+    list-style: none;
+}
+
+.highlight-list li {
+    font-size: 14.5px;
+    color: #2c3e50;
+    margin-bottom: 12px;
+    line-height: 1.75;
+}
+
+.highlight-list li strong {
+    color: #114232;
+    font-weight: 700;
+}
+
+.match-highlight {
+    background: transparent;
+    color: #10b981 !important; 
+    font-weight: 700;
+}
+
+@keyframes goldenGlowAnimation {
+    0% { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.02); border-color: #e2eee7; }
+    20% { border-color: #ffd700; box-shadow: 0 0 12px rgba(255, 215, 0, 0.4), inset 0 0 8px rgba(255, 215, 0, 0.1); background-color: #fffdf2; }
+    50% { border-color: #ffb700; box-shadow: 0 0 22px rgba(255, 183, 0, 0.7), inset 0 0 12px rgba(255, 183, 0, 0.2); background-color: #fffbe6; }
+    80% { border-color: #ffd700; box-shadow: 0 0 12px rgba(255, 215, 0, 0.4), inset 0 0 8px rgba(255, 215, 0, 0.1); background-color: #fffdf2; }
+    100% { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.02); border-color: #e2eee7; }
+}
+
+.glow-active {
+    animation: goldenGlowAnimation 3.5s ease-in-out forwards;
+}
+
+#no-results {
+    color: #d9534f;
+    text-align: center;
+    padding: 30px;
+    display: none;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* BACK TO TOP BUTTON */
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #114232;
+    color: #ffd700;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    border: 2px solid #ffd700;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: #ffd700;
+    color: #114232;
+    border-color: #114232;
+}
+</style>
+</head>
+
+<body>
+
+
+    <!-- MADRASA NAME STARTS BELOW THE BUTTON -->
+    <div class="hero-madrasa-box">
+       <h1>আবনায়ে দারুল উলুম বা <br>দারুল উলূম ধনবাড়ী, টাঙ্গাইল এর<br> সংক্ষিপ্ত পরিচিতি</h1>
+        <p>📍 পাইটকা, ধনবাড়ী, টাঙ্গাইল</p>
+    </div>
+
+    <div class="search-container">
+        <div class="search-wrapper">
+            <span>🔍</span>
+            <input type="text" id="searchInput" class="search-input" placeholder="সার্চ করতে এখানে লিখুন...">
+        </div>
+    </div>
+
+    <div id="indexCard" class="index-card">
+        <div class="index-title">সূচিপত্র</div>
+        <div class="index-list">
+            <a href="#section-introduction" class="index-item" onclick="handleIndexClick(event, 'section-introduction')">ভূমিকা</a>
+            <a href="#section-identity" class="index-item" onclick="handleIndexClick(event, 'section-identity')">পরিচিতি</a>
+            <a href="#section-features" class="index-item" onclick="handleIndexClick(event, 'section-features')">প্রতিষ্ঠানের বৈশিষ্ট্য</a>
+            <a href="#section-projects" class="index-item" onclick="handleIndexClick(event, 'section-projects')">প্রতিষ্ঠানের প্রকল্পসমূহ</a>
+            <a href="#section-syllabus" class="index-item" onclick="handleIndexClick(event, 'section-syllabus')">সিলেবাসের মূলভিত্তি</a>
+            <a href="#section-service" class="index-item" onclick="handleIndexClick(event, 'section-service')">সেবা প্রকল্প</a>
+            <a href="#section-training" class="index-item" onclick="handleIndexClick(event, 'section-training')">ছাত্র প্রশিক্ষণ প্রকল্প</a>
+            <a href="#section-plans" class="index-item" onclick="handleIndexClick(event, 'section-plans')">প্রতিষ্ঠানের পরিকল্পনাসমূহ</a>
+        </div>
+    </div>
+
+    <div id="no-results">কোনো তথ্য পাওয়া যায়নি! সঠিক শব্দ লিখে চেষ্টা করুন।</div>
+
+    <div id="section-introduction" class="content-box searchable" onclick="openInNewWindow('section-introduction')">
+        <div class="sub-title">ভূমিকা</div>
+        <div class="box-desc text-content">
+            হক্ব-বাতিল, সত্য-মিথ্যা ও আলো-অন্ধকারের পার্থক্য যেমন স্পষ্ট, ঠিক তেমনি দ্বীনি সুশিক্ষা ও অজ্ঞতার পার্থক্যও স্পষ্ট। আল্লাহ রাব্বুল আলামিন পৃথিবীকে অজ্ঞতার আঁধার থেকে উদ্ধার করার জন্য নবী সাল্লাল্লাহু আলাইহি ওয়াসল্লামকে সর্বোত্তম ও সর্বোৎকৃষ্ট আমল-আখলাক, জীবনাচার ও নৈতিকতা শিক্ষা দিয়ে মানব সমাজের শিক্ষক হিসেবে পাঠিয়েছেন। তিনি বলেন, আমিতো কেবল উন্নত আমল-আখলাক ও নৈতিকতা শিক্ষা দেয়ার জন্য প্রেরিত হয়েছি।<br><br>
+            (মুসনাদে আহমদ: ৮৯৩৯)<br><br>
+            নববী আখলাকের শিক্ষা প্রদান ও দারুল উলূম দেওবন্দের মাসলাক-মাসরাফের চেতনায় উজ্জীবিত করার মিশন নিয়ে ১৪৩৮ হিজরী মোতাবেক ২০১৭ ঈসাব্দ সনে টাঙ্গাইল জেলার ধনবাড়ী থানাস্থ পাইটকা এলাকায় সবুজের সমারোহ ও পত্র-পল্লবে ঘেরা নিরিবিলি পরিবেশে আপনাদের প্রাণপ্রিয় দারুল উলূম ধনবাড়ী'র ভিত্তি প্রস্তর স্থাপন করা হয়, যা আজ ফযীলত ২য় বর্ষ (স্নাতক) স্তরে উন্নীত।
+        </div>
+    </div>
+
+    <div id="section-identity" class="content-box searchable" onclick="openInNewWindow('section-identity')">
+        <div class="sub-title">পরিচিতি</div>
+        <ul class="highlight-list text-content">
+            <li><strong>প্রাথমিক নাম:</strong> দারুল উলূম ধনবাড়ী, টাঙ্গাইল।</li>
+            <li><strong>অবস্থান:</strong> টাঙ্গাইল জেলাধীন ধনবাড়ী ফায়ার সার্ভিস থেকে ২০০ গজ দক্ষিণে গোপালপুর রোডের পূর্ব পার্শ্বে পাইটকা এলাকায়।</li>
+            <li><strong>স্থাপিত:</strong> ১৪৩৮ হিজরী মোতাবেক ২০১৭ ঈসাব্দ।</li>
+            <li><strong>অবকাঠামো:</strong> একটি মসজিদসহ পাঁচটি ভবন। যথাক্রমে: মসজিদে ক্বাদীম, দারে কাসেমী, দারে শায়খুল হিন্দ, দারে শায়খুল ইসলাম, দারে হাকীমুল ইসলাম, দারে রশীদ।</li>
+            <li><strong>প্রতিষ্ঠাকালীন মুতাওয়াল্লী:</strong> জনাব হাশেম আলী রহ.</li>
+            <li><strong>প্রতিষ্ঠাকালীন উপদেষ্ঠা:</strong> আল্লামা নূর হোছাইন কাসেমী রহ.</li>
+            <li><strong>মুহতামিম:</strong> নাজমুল হাসান দা. বা.</li>
+            <li><strong>ছাত্র সংখ্যা:</strong> ৪ ১৫০ জন</li>
+        </ul>
+    </div>
+
+    <div id="section-features" class="content-box searchable" onclick="openInNewWindow('section-features')">
+        <div class="sub-title">প্রতিষ্ঠানের বৈশিষ্ট্য</div>
+        <div class="box-desc text-content">
+            সরকারী অনুদান মুক্ত এরাবিক মাধ্যম অবৈতনিক দ্বীনি শিক্ষা প্রতিষ্ঠান। প্রতিষ্ঠানটির পক্ষ হতে বিনামূল্যে শিক্ষাপ্রদান ছাড়াও শরয়ী দান গ্রহণের উপযুক্ত ছাত্রদের জন্য থাকা-খাওয়া, চিকিৎসা, কিতাবাদি ও শিক্ষা উপকরণসহ যাবতীয় সহযোগিতার ব্যবস্থা করা হয়। সুবিন্যস্থ যুগোপযোগী সিলেবাস ও উন্নত শিক্ষা পদ্ধতির মাধ্যমে ছাত্রদের গড়ে তোলা হয়।
+        </div>
+    </div>
+
+    <div id="section-projects" class="content-box searchable" onclick="openInNewWindow('section-projects')">
+        <div class="sub-title">প্রতিষ্ঠানের প্রকল্পসমূহ</div>
+        <div class="box-desc text-content">
+            নিয়মতান্ত্রিক শিক্ষা ব্যবস্থার পাশাপাশি তালিবুল ইলমদেরকে একজন পূর্ণাঙ্গ আদর্শ মুসলিম ও সু-নাগরিক হিসেবে গড়ে তুলতে প্রতিষ্ঠানের সুনির্দিষ্ট কিছু প্রকল্প ও পরিকল্পনা আছে।
+            <br><br>
+            <strong>শিক্ষা প্রকল্প:</strong> উক্ত প্রকল্পে কয়েকটি বিভাগ রয়েছে-
+            <br>
+            ১. দাওয়াহ বিভাগ (এক বছর)<br>
+            ২. আরবী সাহিত্য বিভাগ (এক বছর)<br>
+            ৩. ফযীলত (স্নাতক সমমান)<br>
+            ৪. সানাবিয়্যাহ (উচ্চ মাধ্যমিক সমমান)<br>
+            ৫. মুতাওয়াসসিতাহ্ (মাধ্যমিক সমমান)<br>
+            ৬. ইবতিদাইয়্যাহ (প্রাথমিক সমমান)<br>
+            ৭. হিফয ও নাজেরা বিভাগ।
+            <br>
+            <strong>বি.দ্র.</strong> দারুল উলূমের সকল বিভাগ আবাসিক।
+        </div>
+    </div>
+
+    <div id="section-syllabus" class="content-box searchable" onclick="openInNewWindow('section-syllabus')">
+        <div class="sub-title">দারুল উলূমের সিলেবাসের মূলভিত্তি</div>
+        <ul class="highlight-list text-content">
+            <li>১. কুরআন, হাদীস, তাফসীর, ফিকহ, ইলমুল মানতিক, ইলমুল কালাম, ইতিহাস ও তাহযীব।</li>
+            <li>২. আরবী, উর্দু, ফারসী, বাংলা, ইংরেজী সাহিত্য ও ব্যাকরণ।</li>
+            <li>৩. অংক, ভূগোল ও সমাজ।</li>
+            <li>৪. তুলনামূলক ধর্মতত্ত্ব বিষয়ক অধ্যয়ন।</li>
+        </ul>
+    </div>
+
+    <div id="section-service" class="content-box searchable" onclick="openInNewWindow('section-service')">
+        <div class="sub-title">সেবা প্রকল্প</div>
+        <div class="box-desc text-content">উক্ত প্রকল্পে কয়েকটি বিভাগ রয়েছে-</div>
+        <ul class="highlight-list text-content">
+            <li><strong>১. ফতোয়া বিভাগ:</strong> এ বিভাগে মানুষের ব্যক্তিগত, পারিবারিক ও সামাজিক বিভিন্ন অবস্থা ও পরিস্থিতিকে শরীয়তের আলোকে সমাধান প্রদান করা হয়।</li>
+            <li><strong>২. তাবলীগ বিভাগ:</strong> এ বিভাগের আওতায় ছাত্রদেরকে ইসলামী যিন্দেগী গঠন ও সমাজের আল্লাহ্ ভোলা মানুষদেরকে আল্লাহর পথে ধাবিত করার বিশেষ প্রশিক্ষণ দেয়া হয়।</li>
+            <li><strong>৩. দাওয়াতে ইসলাম বিভাগ:</strong> খ্রিস্টান মিশনারী, হিন্দু ও কাদীয়ানীসহ অন্যান্য বিধর্মীদের প্ররোচনায় ইসলামের সঠিক পথ থেকে বিচ্যুত লোকদেরকে পুনরায় ইসলামের পথে ফিরিয়ে আনার মেহনত করার বিষয়ে হাতে-কলমে শিক্ষা দেওয়া হয়।</li>
+            <li><strong>৪. গণপ্রশিক্ষণ বিভাগ:</strong> দারুল উলুম একদিকে যেমন যোগ্য আলেম তৈরির অন্যতম প্রতিষ্ঠান অপরদিকে সর্বসাধরণের ধর্মীয় শিক্ষা-দীক্ষার একটি উন্মুক্ত কেন্দ্র। প্রতি মাসে একদিন মাগরিব থেকে এশা পর্যন্ত কুরআনের মশক, ছয় তাসবীহের যিকির, সুন্নাতের বাস্তব প্রশিক্ষণ ও হক্কানী বুযুর্গানে দ্বীনের মাধ্যমে আত্মশুদ্ধির প্রশিক্ষণ দেয়া হয়। তাছাড়া প্রাথমিক চিকিৎসা প্রশিক্ষণ ক্যাম্পের ব্যবস্থা করে যুবসমাজকে স্বাস্থ্যসচেতন ও জনসাধারণের প্রাথমিক চিকিৎসার দানের যোগ্য করে তোলা হয়।</li>
+            <li><strong>৫. আর্তমানবতার সেবা বিভাগ:</strong> ছাত্ররা লেখাপড়ার পাশাপাশি দুঃস্থ মানবতার সেবায় সর্বদা তৎপর থাকে। উক্ত কাজকে বেগবান করতে "মাদানী কল্যান ফান্ড” নামে জনকল্যাণমূলক তহবিল গঠন করা হয়েছে। নওমুসলিম, জটিল রোগে আক্রান্ত, বন্যা, জলোচ্ছাস ও বিভিন্ন প্রাকৃতিক দুর্যোগে পীড়িত ব্যক্তিদেরকে উক্ত ফান্ড থেকে সহায়তা প্রদান করা হয়ে থাকে।</li>
+        </ul>
+    </div>
+
+    <div id="section-training" class="content-box searchable" onclick="openInNewWindow('section-training')">
+        <div class="sub-title">ছাত্র প্রশিক্ষণ প্রকল্প</div>
+        <ul class="highlight-list text-content">
+            <li><strong>১. ছাত্র পাঠাগার:</strong> ধারাবাহিক শিক্ষাক্রমের পাশাপাশি ছাত্রদের বহুমুখী জ্ঞান অর্জন এবং দেশ ও জাতির সমকালীন ও আন্তর্জাতিক অবস্থা সম্পর্কে অবগতির জন্য বিভিন্ন বিষয়ের উপর তথ্যবহুল বই-পুস্তক সমৃদ্ধ একটি বৃহৎ পাঠাগার রয়েছে, যার মাধ্যমে ছাত্ররা স্বীয় ঝোঁক ও অভিরুচি অনুযায়ী বই-পুস্তক সংগ্রহ করে যুগোপযোগী বিভিন্ন প্রকারের জ্ঞান অর্জন করতে সক্ষম হয়।</li>
+            <li><strong>২. প্রতিযোগিতামূলক সাপ্তাহিক বক্তৃতা প্রশিক্ষণ মজলিস:</strong> কোরআন- হাদীসের জ্ঞান অর্জনের পর সর্বসাধারণের মাঝে দ্বীনের সঠিক দাওয়াতের ব্যাপক প্রচার-প্রসারের যোগ্যতা অর্জনের জন্য ছাত্রদের বাগ্মীতার বিকাশ করার লক্ষ্যে প্রতিযোগিতামূলক সাপ্তাহিক বাংলা, আরবি ও উর্দু বক্তৃতা প্রশিক্ষণ, বিভিন্ন ফিরাকে বাতেলা বিষয়ক সেমিনার, বাৎসরিক নাহু-সরফের মুনাযারা, মুফাখারা ও বিষয়ভিত্তিক বিতর্ক অনুষ্ঠানের ব্যবস্থা রয়েছে।</li>
+            <li><strong>৩. দেয়াল পত্রিকা:</strong> পাশ্চাত্যমুখী বিকৃত রুচির কলম ব্যবসায়ীদের বিরুদ্ধে ইসলামী সাহিত্যের নির্মল জ্যোতি বিকিরণের মহান লক্ষ্য নিয়ে ছাত্রদের কলম সৈনিক রূপে গড়ে তোলার জন্য বাংলা ও আরবি দেয়াল পত্রিকা প্রকাশ করা হয়।</li>
+            <li><strong>৪. কুতুবখানা:</strong> কোরআন, হাদীস ও তাফসীর ছাড়াও বিভিন্ন বিষয়ে দেশি-বিদেশি প্রসিদ্ধ লেখকদের কিতাবাদিতে সমৃদ্ধ একটি লাইব্রেরী রয়েছে। যার মাধ্যমে ছাত্ররা কোরআন হাদিসের সঠিক ব্যাখ্যা এবং আরবি ভাষা ও সাহিত্যের সকল তথ্য-উপাত্ত ও গভীর জ্ঞান অর্জন করতে পারে।</li>
+            <li><strong>৫. গবেষণা ও প্রকাশনা বিভাগ:</strong> যুগের প্রয়োজনবোধে সমকালীন বিষয়ে ছোট ও বড় পুস্তিকা প্রকাশ ও বিতরণ করা। (চলমান)</li>
+        </ul>
+    </div>
+
+    <div id="section-plans" class="content-box searchable" onclick="openInNewWindow('section-plans')">
+        <div class="sub-title">প্রতিষ্ঠানের পরিকল্পনাসমূহ</div>
+        <ul class="highlight-list text-content">
+            <li><strong>১. তাখাসসুস ফিত তাফসীর:</strong> দাওরায়ে হাদীস সমাপনকারী ও কেন্দ্রীয় পরীক্ষায় ১ম বিভাগে উত্তীর্ণ ছাত্রদের জন্য কুরআনে কারীমের তাফসীর বিষয়ে গভীর জ্ঞান লাভের গবেষণামূলক একটি কোর্স। এ কোর্সে উত্তীর্ণ ছাত্ররা "মুফাসসির" সনদ লাভ করবে।</li>
+            <li><strong>২. তাখাসসুস ফিল হাদীস:</strong> দাওরায়ে হাদীস সমাপনকারী ও কেন্দ্রীয় পরীক্ষায় ১ম বিভাগে উত্তীর্ণ ছাত্রদেরকে হাদিসের সনদসহ যাবতীয় খুঁটিনাটি বিষয়ে পারদর্শী করে গড়ে তুলতে ১ বছর মেয়াদী একটি কোর্স। এ কোর্সে উত্তীর্ণ ছাত্ররা 'মুহাদ্দিস' সনদ লাভ করবে।</li>
+            <li><strong>৩. তাখাসসুস ফিল ইফতা:</strong> দাওরায়ে হাদীস সমাপনকারী ও কেন্দ্রীয় পরীক্ষায় ১ম বিভাগে উত্তীর্ণ ছাত্রদেরকে সমকালীন সমস্যার সমাধানে যোগ্যতাসম্পন্ন করে গড়ে তোলা হবে। এ কোর্স সমাপনকারী ছাত্ররা "মুফতি” সনদ লাভ করবে।</li>
+            <li><strong>৪. মাদ্রাসাতুল বানাত:</strong> এখানে কোমলমতি শিশু ও বালিকারা শতভাগ পর্দা ও আমলী পরিবেশে বেড়ে ওঠবে। আগামীর ভবিষ্যৎ বিনির্মাণ ও আদর্শ মা হিসেবে প্রতিষ্ঠিত হওয়ার জন্য প্রস্তুতিমূলক শাখা খোলা হবে।</li>
+        </ul>
+        <div style="margin-top: 20px; text-align: center; font-weight: 700; color: #114232;">মুফতি আব্দুল্লাহ আল মামুন দাঃবাঃ<br>(গাজীপুরী হুজুর)</div>
+    </div>
+
+    <!-- BACK TO TOP BUTTON -->
+    <div id="backToTop" class="back-to-top" onclick="scrollToTop()">▲</div>
+
+<script>
+var originalTexts = [];
+
+window.onload = function() {
+    var textContainers = document.getElementsByClassName('text-content');
+    for (var i = 0; i < textContainers.length; i++) {
+        originalTexts.push(textContainers[i].innerHTML);
+    }
+};
+
+// ফিরে যান বাটনে ক্লিক হ্যান্ডলার (ড্যাশবোর্ড.html ফাইল ওপেন করার জন্য)
+function openBackWindow() {
+    // একই ট্যাবে ওপেন করতে চাইলে নিচের লাইনটি ব্যবহার করুন:
+    window.location.href = 'ড্যাশবোর্ড.html';
+
+    // নোট: যদি আপনার ফাইলের নাম ইংরেজিতে 'dashboard.html' হয়ে থাকে, 
+    // তবে উপরের লাইনটি পরিবর্তন করে window.location.href = 'dashboard.html'; করে দেবেন।
+}
+
+// সূচিপত্র বা ইনডেক্সে ক্লিক হ্যান্ডলার (সোনালী গ্লো অ্যানিমেশন সহ)
+function handleIndexClick(event, targetId) {
+    event.preventDefault(); 
+    var element = document.getElementById(targetId);
+
+    if (element) {
+        element.classList.remove('glow-active');
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        setTimeout(function() {
+            element.classList.add('glow-active');
+        }, 100);
+
+        setTimeout(function() {
+            element.classList.remove('glow-active');
+        }, 3600);
+    }
+}
+
+// কন্টেন্ট বক্সে ক্লিক হ্যান্ডলার
+function openInNewWindow(targetId) {
+    var currentUrl = window.location.href.split('#')[0];
+    window.open(currentUrl + '#' + targetId, '_blank');
+}
+
+// ব্যাক টু টপ বাটন স্ক্রল লজিক
+window.onscroll = function() {
+    var topButton = document.getElementById("backToTop");
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        topButton.classList.add("show");
+    } else {
+        topButton.classList.remove("show");
+    }
+};
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// সার্চ ফাংশন
+function performSearch() {
+    var input = document.getElementById('searchInput').value.trim();
+    var inputLower = input.toLowerCase();
+    var boxes = document.getElementsByClassName('searchable');
+    var indexCard = document.getElementById('indexCard');
+    var noResults = document.getElementById('no-results');
+    var textContainers = document.getElementsByClassName('text-content');
+    var anyVisible = false;
+
+    if (input.length > 0) {
+        indexCard.style.display = "none";
+    } else {
+        indexCard.style.display = "block";
+    }
+
+    for (var i = 0; i < boxes.length; i++) {
+        var rawHTML = originalTexts[i];
+
+        if (input.length === 0) {
+            textContainers[i].innerHTML = rawHTML;
+            boxes[i].style.display = "block";
+            anyVisible = true;
+            continue;
+        }
+
+        var tempDiv = document.createElement('div');
+        tempDiv.innerHTML = rawHTML;
+        var pureText = tempDiv.textContent.toLowerCase();
+
+        if (pureText.includes(inputLower)) {
+            boxes[i].style.display = "block";
+            anyVisible = true;
+            var regex = new RegExp("(" + escapeRegExp(input) + ")", "gi");
+            highlightTextNodes(textContainers[i], regex);
+        } else {
+            boxes[i].style.display = "none";
+        }
+    }
+
+    if (anyVisible || input.length === 0) {
+        noResults.style.display = "none";
+    } else {
+        noResults.style.display = "block";
+    }
+}
+
+function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function highlightTextNodes(element, regex) {
+    var tempContainer = document.createElement('div');
+    var index = Array.from(document.getElementsByClassName('text-content')).indexOf(element);
+    tempContainer.innerHTML = originalTexts[index];
+
+    var walk = document.createTreeWalker(tempContainer, NodeFilter.SHOW_TEXT, null, false);
+    var node;
+    var matches = [];
+
+    while(node = walk.nextNode()) {
+        if(node.nodeValue.match(regex)) {
+            matches.push(node);
+        }
+    }
+
+    for(var i = 0; i < matches.length; i++) {
+        var n = matches[i];
+        var span = document.createElement('span');
+        span.innerHTML = n.nodeValue.replace(regex, '<span class="match-highlight">$1</span>');
+        n.parentNode.replaceChild(span, n);
+    }
+
+    element.innerHTML = tempContainer.innerHTML;
+}
+
+document.getElementById('searchInput').addEventListener('input', performSearch);
+</script>
+
+</body>
+</html>
